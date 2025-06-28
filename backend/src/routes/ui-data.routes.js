@@ -20,10 +20,8 @@ router.get("/", async (req, res) => {
         res.json(data);
     } catch (err) {
         if (err instanceof ChapterNotFoundError) {
-            logger.warn(`Chapter not found: ${chapterId}`);
             res.status(404).json({ error: err.message });
         } else {
-            logger.error(`Unexpected error in /ui-data: ${err.message}`);
             res.status(500).json({ error: "Failed to load UI data" });
         }
     }

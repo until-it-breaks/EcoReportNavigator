@@ -4,6 +4,8 @@ import url from "url";
 
 import logger from "../utils/logger.js"
 
+const TAG = "[ui-data-service]";
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -22,7 +24,7 @@ export async function getUiData(chapterId) {
     );
 
     if (!chapterData) {
-        logger.warn(`Chapter not found: ${chapterId}`);
+        logger.warn(`${TAG} Chapter ${chapterId} not found`);
         throw new ChapterNotFoundError();
     }
 

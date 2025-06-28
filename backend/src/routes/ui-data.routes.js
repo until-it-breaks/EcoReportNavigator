@@ -1,15 +1,14 @@
 import express from "express"
-import { getUIData as getUiData, ChapterNotFoundError } from "../services/ui-data-service.js"
+import { getUiData, ChapterNotFoundError } from "../services/ui-data-service.js"
 
 import logger from "../utils/logger.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+    const chapterParam = req.query.chapterId;
+    const chapterId = chapterParam ? Number(chapterParam) : undefined;
     try {
-        const chapterParam = req.query.chapterId;
-        const chapterId = chapterParam ? Number(chapterParam) : undefined;
-
         logger.info(`GET /ui-data - chapterId=${chapterParam ?? "all"}`);
 
         if (chapterParam && isNaN(chapterId)) {

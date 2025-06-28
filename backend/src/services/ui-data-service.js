@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const jsonPath = path.join(__dirname, "../data/BS2024.json");
 
-export async function getUIData(chapterId) {
+export async function getUiData(chapterId) {
     try {
         const fileData = await fs.readFile(jsonPath, "utf-8");
         const data = JSON.parse(fileData);

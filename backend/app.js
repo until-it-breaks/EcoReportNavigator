@@ -11,16 +11,14 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
 const useLocal = process.env.USE_LOCAL === "true";
 
-const llm = useLocal 
-    ? new LocalLLMClient("http://localhost:8080")
-    : new GeminiClient(process.env.GEMINI_API_KEY);
+const llm = useLocal ? new LocalLLMClient("http://localhost:8080") : new GeminiClient(process.env.GEMINI_API_KEY);
 
 app.use("/ask", createLLMRoute(llm));
 app.use("/ui-data", uiDataRoute);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -2,8 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 
-import { GeminiClient } from "./src/llm/geminiClient.js"
-import { LocalLLMClient } from "./src/llm/localLLMClient.js"
+import { GeminiClient } from "./src/llm/gemini-client.js"
 import createLLMRoute from "./src/routes/llm.routes.js"
 import uiDataRoute from "./src/routes/ui-data.routes.js";
 
@@ -17,10 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const useLocal = process.env.USE_LOCAL === "true";
-logger.info(`${TAG} Using ${useLocal ? "LocalLLMClient" : "GeminiClient"}`);
-
-const llm = useLocal ? new LocalLLMClient("http://localhost:8080") : new GeminiClient(process.env.GEMINI_API_KEY);
+const llm = new GeminiClient(process.env.GEMINI_API_KEY);
 
 app.use("/ask", createLLMRoute(llm));
 logger.info(`${TAG} Mounted /ask route`);

@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 
-import { GeminiClient } from "./src/llm/gemini-client.js"
+import GeminiClient from "./src/llm/gemini-client.js"
 import createLLMRoute from "./src/routes/llm.routes.js"
 import uiDataRoute from "./src/routes/ui-data.routes.js";
 
@@ -23,5 +23,10 @@ logger.info(`${TAG} Mounted /ask route`);
 app.use("/ui-data", uiDataRoute);
 logger.info(`${TAG} Mounted /ui-data route`);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => logger.info(`${TAG} Server running on port ${PORT}`));
+const PORT = process.env.PORT || 8080;
+
+const server = app.listen(PORT, "localhost", () => {
+    const { address, port } = server.address();
+    const host = address.includes(":") ? `[${address}]` : address;
+    logger.info(`${TAG} Server running at http://${host}:${port}`);
+})

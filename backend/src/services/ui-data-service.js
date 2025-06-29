@@ -20,7 +20,7 @@ export async function getUiData(chapterId) {
     }
 
     const chapterData = data.capitoli?.find(
-        (c) => c.numero === chapterId
+        (chapter) => chapter.numero === chapterId
     );
 
     if (!chapterData) {

@@ -11,10 +11,10 @@ router.get("/", async (req, res) => {
     const chapterParam = req.query.chapterId;
     const chapterId = chapterParam ? Number(chapterParam) : undefined;
     try {
-        logger.info(`${TAG} GET /ui-data - chapterId=${chapterParam ?? "all"}`);
+        logger.info(`${TAG} ${req.method} ${req.originalUrl} from [${req.ip}]`);
 
         if (chapterParam && isNaN(chapterId)) {
-            logger.warn(`${TAG} Invalid chapter id received: chapterId=${chapterParam}`);
+            logger.warn(`${TAG} Invalid chapter id received from [${req.ip}]`);
             return res.status(400).json({ error: "Invalid chapter id" });
         }
 

@@ -4,7 +4,7 @@ import { LLMInterface } from "./llm-interface.js";
 
 dotenv.config()
 
-export class GeminiClient extends LLMInterface {
+export default class GeminiClient extends LLMInterface {
     constructor(apiKey) {
         super();
         this.ai = new GoogleGenAI({ apiKey: apiKey });

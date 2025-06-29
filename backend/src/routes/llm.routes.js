@@ -1,19 +1,21 @@
 import express from "express"
 
-const router = express.Router()
+import logger from "../utils/logger.js";
+
+const TAG = "[llm-routes]";
 
 export default function createLLMRoute(llmClient) {
-    router.post("/ask", async (req, res) => {
+    const router = express.Router()
+    router.post("/", async (req, res) => {
+    logger.info(`${TAG} ${req.method} ${req.originalUrl} from [${req.ip}]`);
         const { prompt } = req.body;
-
         try {
             const answer = await llmClient.ask(prompt);
             res.json({ answer });
         } catch (err) {
-            console.error("LLM error:", err);
+            logger.warn(`${TAG} LLM error: ${err}`);
             res.status(500).json({ error: "LLM failed to respond" });
         }
     });
-
     return router
 }

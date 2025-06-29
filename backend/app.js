@@ -25,7 +25,7 @@ logger.info(`${TAG} Mounted /ui-data route`);
 
 const PORT = process.env.PORT || 8080;
 
-const server = app.listen(PORT, "localhost", () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
     const { address, port } = server.address();
     const host = address.includes(":") ? `[${address}]` : address;
     logger.info(`${TAG} Server running at http://${host}:${port}`);

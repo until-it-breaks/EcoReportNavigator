@@ -1,6 +1,6 @@
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/models/section.dart';
-import 'package:app_client/models/strategy_data.dart';
+import 'package:app_client/models/sections/strategy.dart';
 import 'package:app_client/widgets/ranking_list.dart';
 import 'package:flutter/material.dart';
 

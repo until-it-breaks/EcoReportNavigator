@@ -1,3 +1,30 @@
+class EconomicData {
+  final EconomicValueSummary summary;
+  final EconomicValueDetailed attractedDetailed;
+  final EconomicValueDetailed distributedDetailed;
+  final GreenPurchases greenPurchases;
+
+  EconomicData({
+    required this.summary,
+    required this.attractedDetailed,
+    required this.distributedDetailed,
+    required this.greenPurchases,
+  });
+
+  factory EconomicData.fromJson(Map<String, dynamic> json) {
+    return EconomicData(
+      summary: EconomicValueSummary.fromJson(json["valore_economico"]),
+      attractedDetailed: EconomicValueDetailed.fromJson(
+        json["valore_economico_attratto_2023"],
+      ),
+      distributedDetailed: EconomicValueDetailed.fromJson(
+        json["valore_economico_distribuito_2023"],
+      ),
+      greenPurchases: GreenPurchases.fromJson(json["acquisti_green"]),
+    );
+  }
+}
+
 class EconomicValueSummary {
   final ValueWithUnit attractedValue;
   final ValueWithUnit distributedValue;

@@ -582,7 +582,7 @@
                     ]
                 },
                 "valore_economico_distribuito_2023": {
-                    "unita_misura": "mln",
+                    "unita_di_misura": "mln",
                     "voci": [
                         {
                             "nome": "Risorse umane",

@@ -1,3 +1,31 @@
+class StrategyData {
+  final List<UniversityRanking> rankings;
+  final Facilities facilities;
+  final StrategicCosts strategicCosts;
+
+  StrategyData({
+    required this.rankings,
+    required this.facilities,
+    required this.strategicCosts,
+  });
+
+  factory StrategyData.fromJson(Map<String, dynamic> json) {
+    final rankingList =
+        (json["ranking_universitario"] as List)
+            .map((e) => UniversityRanking.fromJson(e))
+            .toList();
+    final facilities = Facilities.fromJson(json["strutture"]);
+    final strategicCosts = StrategicCosts.fromJson(
+      json["costi_per_nome_strategico"],
+    );
+    return StrategyData(
+      rankings: rankingList,
+      facilities: facilities,
+      strategicCosts: strategicCosts,
+    );
+  }
+}
+
 class UniversityRanking {
   final String name;
   final int positionInItaly;
@@ -63,34 +91,6 @@ class StrategicCosts {
     return StrategicCosts(
       unitOfMeasurement: json["unita_di_misura"],
       scopes: scopeList,
-    );
-  }
-}
-
-class StrategyData {
-  final List<UniversityRanking> rankings;
-  final Facilities facilities;
-  final StrategicCosts strategicCosts;
-
-  StrategyData({
-    required this.rankings,
-    required this.facilities,
-    required this.strategicCosts,
-  });
-
-  factory StrategyData.fromJson(Map<String, dynamic> json) {
-    final rankingList =
-        (json["ranking_universitario"] as List)
-            .map((e) => UniversityRanking.fromJson(e))
-            .toList();
-    final facilities = Facilities.fromJson(json["strutture"]);
-    final strategicCosts = StrategicCosts.fromJson(
-      json["costi_per_nome_strategico"],
-    );
-    return StrategyData(
-      rankings: rankingList,
-      facilities: facilities,
-      strategicCosts: strategicCosts,
     );
   }
 }

@@ -416,11 +416,6 @@
             }
         },
         {
-            "numero": 2,
-            "nome": "GOVERNO DELLA SOSTENIBILITÀ",
-            "pagina": 24
-        },
-        {
             "numero": 3,
             "nome": "VALORE ECONOMICO",
             "pagina": 32,
@@ -6241,44 +6236,6 @@
                     }
                 ]
             }
-        },
-        {
-            "numero": 9,
-            "nome": "TAVOLA GRI",
-            "pagina": 202,
-            "data": {
-                "percentuale_dirigenti_emilia_romagna": {
-                    "totale": "89%",
-                    "province": [
-                        {
-                            "nome": "Bologna",
-                            "percentuale": "75%"
-                        },
-                        {
-                            "nome": "Rimini",
-                            "percentuale": "6,25%"
-                        },
-                        {
-                            "nome": "Ravenna",
-                            "percentuale": "6,25%"
-                        },
-                        {
-                            "nome": "Forli-Cesena",
-                            "percentuale": "12,5%"
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "numero": 10,
-            "nome": "INDICE DELLE TABELLE E DELLE FIGURE",
-            "pagina": 220
-        },
-        {
-            "numero": 11,
-            "nome": "COMITATO TECNICO SCIENTIFICO E GRUPPO DI COORDINAMENTO",
-            "pagina": 224
         }
     ]
 }

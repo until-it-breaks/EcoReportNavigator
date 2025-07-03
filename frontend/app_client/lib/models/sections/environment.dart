@@ -97,9 +97,9 @@ class CarbonFootprintEntry {
 
   factory CarbonFootprintEntry.fromJson(Map<String, dynamic> json) {
     return CarbonFootprintEntry(
-      area: json['area'],
-      year2022: json['2022'],
-      year2023: json['2023'],
+      area: json["area"],
+      year2022: json["2022"],
+      year2023: json["2023"],
     );
   }
 }
@@ -112,10 +112,10 @@ class CarbonFootprint {
 
   factory CarbonFootprint.fromJson(Map<String, dynamic> json) {
     var list =
-        (json['dati'] as List)
+        (json["dati"] as List)
             .map((item) => CarbonFootprintEntry.fromJson(item))
             .toList();
 
-    return CarbonFootprint(unitOfMeasure: json['unita_di_misura'], data: list);
+    return CarbonFootprint(unitOfMeasure: json["unita_di_misura"], data: list);
   }
 }

@@ -13,7 +13,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: "Flutter JSON Demo",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const StrategyPage(),
+      initialRoute: "/",
+      routes: {"/": (context) => const StrategyPage()},
     );
   }
 }

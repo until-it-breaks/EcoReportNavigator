@@ -1,3 +1,4 @@
+import 'package:app_client/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -19,14 +20,20 @@ class WelcomePage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton.icon(
               icon: const Icon(Icons.insights),
-              label: const Text("Vai a Strategia"),
-              onPressed: () => Navigator.pushNamed(context, "/strategy"),
+              label: const Text("Vai alla Strategia"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.strategy),
             ),
             const SizedBox(height: 16),
             ElevatedButton.icon(
               icon: const Icon(Icons.bar_chart),
-              label: const Text("Vai a Economia"),
-              onPressed: () => Navigator.pushNamed(context, '/economic'),
+              label: const Text("Vai al Valore Economico"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.economic),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.school),
+              label: const Text("Vai alla Didattica"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.teaching),
             ),
             const SizedBox(height: 16),
             ElevatedButton.icon(

@@ -1,26 +1,25 @@
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/models/section.dart';
-import 'package:app_client/models/sections/economic_value.dart';
+import 'package:app_client/models/sections/teaching.dart';
 import 'package:app_client/widgets/base_scaffold.dart';
-import 'package:app_client/widgets/economic/economic_detail_table.dart';
-import 'package:app_client/widgets/economic/economic_summary_grid.dart';
-import 'package:app_client/widgets/economic/green_purchases_card.dart';
+import 'package:app_client/widgets/teaching/active_courses_bar_chart.dart';
+import 'package:app_client/widgets/teaching/teaching_summary_grid.dart';
 import 'package:flutter/material.dart';
 
-class EconomicPage extends StatefulWidget {
-  const EconomicPage({super.key});
+class TeachingPage extends StatefulWidget {
+  const TeachingPage({super.key});
 
   @override
-  State<EconomicPage> createState() => _EconomicPageState();
+  State<StatefulWidget> createState() => _TeachingPageState();
 }
 
-class _EconomicPageState extends State<EconomicPage> {
+class _TeachingPageState extends State<TeachingPage> {
   late Future<Section> _futureSection;
 
   @override
   void initState() {
     super.initState();
-    _futureSection = DataRepository().fetchEconomicSection();
+    _futureSection = DataRepository().fetchTeachingSection();
   }
 
   @override
@@ -41,22 +40,14 @@ class _EconomicPageState extends State<EconomicPage> {
         if (section == null) {
           return const Scaffold(body: Center(child: Text("No data found")));
         }
-        final economicData = EconomicData.fromJson(section.data);
+        final teachingData = TeachingData.fromJson(section.data);
         return BaseScaffold(
-          title: "Valore Economico",
+          title: "Didattica",
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              EconomicSummaryGrid(summary: economicData.summary),
-              EconomicDetailTable(
-                title: "Valore economico attratto",
-                data: economicData.attractedDetailed,
-              ),
-              EconomicDetailTable(
-                title: "Valore economico distribuito",
-                data: economicData.distributedDetailed,
-              ),
-              GreenPurchasesCard(data: economicData.greenPurchases),
+              TeachingSummaryGrid(summary: teachingData.summary),
+              ActiveCoursesBarChart(activeCourses: teachingData.activeCourses),
             ],
           ),
         );

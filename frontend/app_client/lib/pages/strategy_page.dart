@@ -2,7 +2,9 @@ import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/models/section.dart';
 import 'package:app_client/models/sections/strategy.dart';
 import 'package:app_client/widgets/base_scaffold.dart';
-import 'package:app_client/widgets/ranking_list.dart';
+import 'package:app_client/widgets/strategy/facilities_card.dart';
+import 'package:app_client/widgets/strategy/ranking_list.dart';
+import 'package:app_client/widgets/strategy/strategic_costs_pie_chart.dart';
 import 'package:flutter/material.dart';
 
 class StrategyPage extends StatefulWidget {
@@ -53,19 +55,11 @@ class _StrategyPageState extends State<StrategyPage> {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 8),
-              Text("Scuole: ${strategyData.facilities.schoolAmount}"),
-              Text("Dipartimenti: ${strategyData.facilities.departmentAmount}"),
+              FacilitiesCard(facilities: strategyData.facilities),
 
               const SizedBox(height: 24),
 
-              Text(
-                "Costi Strategici",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(height: 8),
-              ...strategyData.strategicCosts.scopes.map(
-                (scope) => Text("${scope.name}: ${scope.percentage}"),
-              ),
+              StrategicCostsPieChart(data: strategyData.strategicCosts),
             ],
           ),
         );

@@ -2,7 +2,9 @@ import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/models/section.dart';
 import 'package:app_client/models/sections/economic_value.dart';
 import 'package:app_client/widgets/base_scaffold.dart';
+import 'package:app_client/widgets/economic_detail_table.dart';
 import 'package:app_client/widgets/economic_summary_grid.dart';
+import 'package:app_client/widgets/green_purchases_card.dart';
 import 'package:flutter/material.dart';
 
 class EconomicPage extends StatefulWidget {
@@ -44,7 +46,18 @@ class _EconomicPageState extends State<EconomicPage> {
           title: "Valore Economico",
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [EconomicSummaryGrid(summary: economicData.summary)],
+            children: [
+              EconomicSummaryGrid(summary: economicData.summary),
+              EconomicDetailTable(
+                title: "Valore economico attratto",
+                data: economicData.attractedDetailed,
+              ),
+              EconomicDetailTable(
+                title: "Valore economico distribuito",
+                data: economicData.distributedDetailed,
+              ),
+              GreenPurchasesCard(data: economicData.greenPurchases),
+            ],
           ),
         );
       },

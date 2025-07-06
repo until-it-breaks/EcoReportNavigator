@@ -20,7 +20,7 @@ class _StrategyPageState extends State<StrategyPage> {
   @override
   void initState() {
     super.initState();
-    _futureSection = DataRepository().fetchStrategySection();
+    _futureSection = DataRepository().fetchSection(ChapterEnum.strategy);
   }
 
   @override

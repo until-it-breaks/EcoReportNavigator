@@ -21,7 +21,7 @@ class _TeachingPageState extends State<TeachingPage> {
   @override
   void initState() {
     super.initState();
-    _futureSection = DataRepository().fetchTeachingSection();
+    _futureSection = DataRepository().fetchSection(ChapterEnum.teaching);
   }
 
   @override

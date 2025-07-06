@@ -20,7 +20,7 @@ class _EconomicPageState extends State<EconomicPage> {
   @override
   void initState() {
     super.initState();
-    _futureSection = DataRepository().fetchEconomicSection();
+    _futureSection = DataRepository().fetchSection(ChapterEnum.economic);
   }
 
   @override

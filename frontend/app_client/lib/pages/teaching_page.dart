@@ -3,6 +3,8 @@ import 'package:app_client/models/section.dart';
 import 'package:app_client/models/sections/teaching.dart';
 import 'package:app_client/widgets/base_scaffold.dart';
 import 'package:app_client/widgets/teaching/active_courses_bar_chart.dart';
+import 'package:app_client/widgets/teaching/gender_enrollment_chart.dart';
+import 'package:app_client/widgets/teaching/sdgs_teaching_chart.dart';
 import 'package:app_client/widgets/teaching/teaching_summary_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +50,10 @@ class _TeachingPageState extends State<TeachingPage> {
             children: [
               TeachingSummaryGrid(summary: teachingData.summary),
               ActiveCoursesBarChart(activeCourses: teachingData.activeCourses),
+              GenderEnrollmentChart(
+                enrollmentByGender: teachingData.enrollmentByGender,
+              ),
+              SdgsTeachingChart(sdgsTeachings: teachingData.sdgsTeachings),
             ],
           ),
         );

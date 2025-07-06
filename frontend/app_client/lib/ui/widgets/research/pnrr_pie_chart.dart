@@ -1,4 +1,5 @@
 import 'package:app_client/data/models/sections/research.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +14,6 @@ class PnrrPieChart extends StatefulWidget {
 
 class _PnrrPieChartState extends State<PnrrPieChart> {
   int? touchedIndex;
-
-  double parsePercentage(String raw) {
-    // Normalize "40,73%" → 40.73
-    return double.tryParse(
-          raw.replaceAll('%', '').replaceAll(',', '.').trim(),
-        ) ??
-        0.0;
-  }
 
   @override
   Widget build(BuildContext context) {

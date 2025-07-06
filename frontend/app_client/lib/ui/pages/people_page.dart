@@ -1,7 +1,9 @@
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/data/models/section.dart';
+import 'package:app_client/data/models/sections/people.dart';
 import 'package:app_client/ui/pages/section_page.dart';
 import 'package:app_client/ui/widgets/base_scaffold.dart';
+import 'package:app_client/ui/widgets/people/people_summary_grid.dart';
 import 'package:flutter/material.dart';
 
 class PeoplePage extends SectionPage {
@@ -10,11 +12,11 @@ class PeoplePage extends SectionPage {
 
   @override
   Widget buildContent(BuildContext context, Section section) {
-    final peopleData = DataRepository().fetchSection(ChapterEnum.people);
+    final peopleData = PeopleData.fromJson(section.data);
 
     return BaseScaffold(
       title: title,
-      body: Column(children: [Text("Persone")]),
+      body: Column(children: [PeopleSummaryGrid(summary: peopleData.summary)]),
     );
   }
 }

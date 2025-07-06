@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:app_client/data/models/sections/teaching.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -26,10 +27,6 @@ class _GenderEnrollmentChartState extends State<GenderEnrollmentChart> {
       default:
         return widget.enrollmentByGender.total;
     }
-  }
-
-  double parsePercentage(String value) {
-    return double.tryParse(value.replaceAll('%', '').replaceAll(',', '.')) ?? 0;
   }
 
   @override

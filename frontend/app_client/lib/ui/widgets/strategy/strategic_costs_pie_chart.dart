@@ -1,4 +1,5 @@
 import 'package:app_client/data/models/sections/strategy.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -52,8 +53,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                   ),
                   sections: List.generate(sections.length, (i) {
                     final s = sections[i];
-                    final percent =
-                        double.tryParse(s.percentage.replaceAll("%", "")) ?? 0;
+                    final percent = parsePercentage(s.percentage);
                     final isTouched = i == touchedIndex;
                     return PieChartSectionData(
                       value: percent,

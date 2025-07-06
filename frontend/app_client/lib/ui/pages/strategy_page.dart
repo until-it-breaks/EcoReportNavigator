@@ -1,10 +1,10 @@
 import 'package:app_client/data/data_repository.dart';
-import 'package:app_client/models/section.dart';
-import 'package:app_client/models/sections/strategy.dart';
-import 'package:app_client/widgets/base_scaffold.dart';
-import 'package:app_client/widgets/strategy/facilities_card.dart';
-import 'package:app_client/widgets/strategy/ranking_list.dart';
-import 'package:app_client/widgets/strategy/strategic_costs_pie_chart.dart';
+import 'package:app_client/data/models/section.dart';
+import 'package:app_client/data/models/sections/strategy.dart';
+import 'package:app_client/ui/widgets/base_scaffold.dart';
+import 'package:app_client/ui/widgets/strategy/facilities_card.dart';
+import 'package:app_client/ui/widgets/strategy/ranking_list.dart';
+import 'package:app_client/ui/widgets/strategy/strategic_costs_pie_chart.dart';
 import 'package:flutter/material.dart';
 
 class StrategyPage extends StatefulWidget {

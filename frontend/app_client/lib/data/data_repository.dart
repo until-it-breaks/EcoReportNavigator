@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_client/models/section.dart';
+import 'package:app_client/data/models/section.dart';
 import 'package:http/http.dart' as http;
 
 class DataRepository {

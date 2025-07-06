@@ -1,10 +1,10 @@
 import 'package:app_client/data/data_repository.dart';
-import 'package:app_client/models/section.dart';
-import 'package:app_client/models/sections/economic_value.dart';
-import 'package:app_client/widgets/base_scaffold.dart';
-import 'package:app_client/widgets/economic/economic_detail_table.dart';
-import 'package:app_client/widgets/economic/economic_summary_grid.dart';
-import 'package:app_client/widgets/economic/green_purchases_card.dart';
+import 'package:app_client/data/models/section.dart';
+import 'package:app_client/data/models/sections/economic.dart';
+import 'package:app_client/ui/widgets/base_scaffold.dart';
+import 'package:app_client/ui/widgets/economic/economic_detail_table.dart';
+import 'package:app_client/ui/widgets/economic/economic_summary_grid.dart';
+import 'package:app_client/ui/widgets/economic/green_purchases_card.dart';
 import 'package:flutter/material.dart';
 
 class EconomicPage extends StatefulWidget {

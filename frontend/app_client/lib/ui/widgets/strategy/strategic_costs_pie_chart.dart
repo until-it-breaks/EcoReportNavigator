@@ -1,4 +1,4 @@
-import 'package:app_client/models/sections/strategy.dart';
+import 'package:app_client/data/models/sections/strategy.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

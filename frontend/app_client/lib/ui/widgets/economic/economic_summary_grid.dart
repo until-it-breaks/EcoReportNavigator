@@ -1,44 +1,33 @@
-import 'package:app_client/models/sections/teaching.dart';
+import 'package:app_client/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
 
-class TeachingSummaryGrid extends StatelessWidget {
-  final TeachingSummary summary;
+class EconomicSummaryGrid extends StatelessWidget {
+  final EconomicValueSummary summary;
 
-  const TeachingSummaryGrid({super.key, required this.summary});
+  const EconomicSummaryGrid({super.key, required this.summary});
 
   @override
   Widget build(BuildContext context) {
     final entries = [
       _SummaryItem(
-        icon: Icons.school,
-        label: "Corsi di Studio",
-        value: summary.courseCount.toString(),
+        icon: Icons.arrow_downward,
+        label: "Valore Attratto",
+        value: summary.attractedValue,
       ),
       _SummaryItem(
-        icon: Icons.people,
-        label: "Studenti Iscritti (2023)",
-        value: summary.enrolledStudents2023.toString(),
+        icon: Icons.arrow_upward,
+        label: "Valore distribuito",
+        value: summary.distributedValue,
       ),
       _SummaryItem(
-        icon: Icons.public,
-        label: "Studenti Internazionali",
-        value: summary.internationalStudents.toString(),
+        icon: Icons.percent,
+        label: "5x1000",
+        value: summary.fivePerThousand,
       ),
       _SummaryItem(
-        icon: Icons.workspace_premium,
-        label: "Numero Laureati",
-        value: summary.numberOfGraduates.toString(),
-      ),
-      _SummaryItem(
-        icon: Icons.card_giftcard,
-        label: "Borse ER.GO",
-        value: summary.ergoScholarships.toString(),
-      ),
-      _SummaryItem(
-        icon: Icons.timelapse,
-        label: "Iscritti in Corso",
-        value: summary.onTimeEnrolledPercentage,
-        isPercentage: true,
+        icon: Icons.eco,
+        label: "Acquisti verdi",
+        textValue: summary.greenPurchasesPercentage,
       ),
     ];
 
@@ -54,7 +43,7 @@ class TeachingSummaryGrid extends StatelessWidget {
               .map(
                 (e) => SizedBox(
                   width: itemWidth,
-                  child: _TeachingSummaryCard(item: e),
+                  child: _EconomicSummaryCard(item: e),
                 ),
               )
               .toList(),
@@ -65,24 +54,28 @@ class TeachingSummaryGrid extends StatelessWidget {
 class _SummaryItem {
   final IconData icon;
   final String label;
-  final String value;
-  final bool isPercentage;
+  final ValueWithUnit? value;
+  final String? textValue;
 
   _SummaryItem({
     required this.icon,
     required this.label,
-    required this.value,
-    this.isPercentage = false,
+    this.value,
+    this.textValue,
   });
 }
 
-class _TeachingSummaryCard extends StatelessWidget {
+class _EconomicSummaryCard extends StatelessWidget {
   final _SummaryItem item;
 
-  const _TeachingSummaryCard({required this.item});
+  const _EconomicSummaryCard({required this.item});
 
   @override
   Widget build(BuildContext context) {
+    final valueText =
+        item.textValue ??
+        "${item.value?.value.toStringAsFixed(2)} ${item.value?.unitOfMeasure}";
+
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -92,7 +85,9 @@ class _TeachingSummaryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: Theme.of(context).primaryColor.withAlpha(30),
+              backgroundColor: Theme.of(
+                context,
+              ).primaryColor.withValues(alpha: 0.1),
               foregroundColor: Theme.of(context).primaryColor,
               child: Icon(item.icon),
             ),
@@ -107,7 +102,7 @@ class _TeachingSummaryCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    item.value,
+                    valueText,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

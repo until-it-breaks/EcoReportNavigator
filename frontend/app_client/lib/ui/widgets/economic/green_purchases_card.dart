@@ -1,4 +1,4 @@
-import 'package:app_client/models/sections/economic_value.dart';
+import 'package:app_client/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
 
 class GreenPurchasesCard extends StatelessWidget {

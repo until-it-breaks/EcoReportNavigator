@@ -1,4 +1,4 @@
-import 'package:app_client/models/sections/teaching.dart';
+import 'package:app_client/data/models/sections/teaching.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

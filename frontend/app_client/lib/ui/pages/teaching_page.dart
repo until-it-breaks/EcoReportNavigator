@@ -1,11 +1,11 @@
 import 'package:app_client/data/data_repository.dart';
-import 'package:app_client/models/section.dart';
-import 'package:app_client/models/sections/teaching.dart';
-import 'package:app_client/widgets/base_scaffold.dart';
-import 'package:app_client/widgets/teaching/active_courses_bar_chart.dart';
-import 'package:app_client/widgets/teaching/gender_enrollment_chart.dart';
-import 'package:app_client/widgets/teaching/sdgs_teaching_chart.dart';
-import 'package:app_client/widgets/teaching/teaching_summary_grid.dart';
+import 'package:app_client/data/models/section.dart';
+import 'package:app_client/data/models/sections/teaching.dart';
+import 'package:app_client/ui/widgets/base_scaffold.dart';
+import 'package:app_client/ui/widgets/teaching/active_courses_bar_chart.dart';
+import 'package:app_client/ui/widgets/teaching/gender_enrollment_chart.dart';
+import 'package:app_client/ui/widgets/teaching/sdgs_teaching_chart.dart';
+import 'package:app_client/ui/widgets/teaching/teaching_summary_grid.dart';
 import 'package:flutter/material.dart';
 
 class TeachingPage extends StatefulWidget {

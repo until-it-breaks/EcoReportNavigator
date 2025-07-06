@@ -35,14 +35,39 @@ class WelcomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.3),
+                      offset: const Offset(12, 12),
+                      blurRadius: 8,
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    "assets/icon/app_icon.png",
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8),
               Text(
                 "Benvenuto nel tool di visualizzazione dei dati universitari.",
                 style: theme.textTheme.headlineMedium,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               Text(
                 "Seleziona la categoria che ti interessa.",
                 style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
               Wrap(

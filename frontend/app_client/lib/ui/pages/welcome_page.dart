@@ -37,6 +37,31 @@ class WelcomePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ElevatedButton.icon(
+              icon: const Icon(Icons.science),
+              label: const Text("Vai alla Ricerca"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.research),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.people),
+              label: const Text("Vai alle Persone"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.people),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.diversity_3),
+              label: const Text("Vai alla Società"),
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.society),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.energy_savings_leaf),
+              label: const Text("Vai all'Ambiente"),
+              onPressed:
+                  () => Navigator.pushNamed(context, AppRoutes.environment),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
               icon: const Icon(Icons.chat),
               label: const Text("Chat AI"),
               onPressed: () => Navigator.pushNamed(context, '/chat'),

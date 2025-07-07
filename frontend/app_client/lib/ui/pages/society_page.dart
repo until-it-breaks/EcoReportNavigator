@@ -3,6 +3,9 @@ import 'package:app_client/data/models/section.dart';
 import 'package:app_client/data/models/sections/society.dart';
 import 'package:app_client/ui/pages/section_page.dart';
 import 'package:app_client/ui/widgets/base_scaffold.dart';
+import 'package:app_client/ui/widgets/society/internship_agreements_pie_chart.dart';
+import 'package:app_client/ui/widgets/society/social_events.dart';
+import 'package:app_client/ui/widgets/society/social_networks_table.dart';
 import 'package:app_client/ui/widgets/society/society_summary_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +19,12 @@ class SocietyPage extends SectionPage {
     return BaseScaffold(
       title: title,
       body: Column(
-        children: [SocietySummaryGrid(summary: societyData.societySummary)],
+        children: [
+          SocietySummaryGrid(summary: societyData.societySummary),
+          InternshipAgreementsPieChart(data: societyData.internshipAgreements),
+          EventCardList(data: societyData.events),
+          SocialChannelsTable(data: societyData.socialChannels),
+        ],
       ),
     );
   }

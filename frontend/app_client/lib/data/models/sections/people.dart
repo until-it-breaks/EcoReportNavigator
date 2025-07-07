@@ -106,49 +106,6 @@ class Welfare {
   }
 }
 
-class AcademicStaffYearData {
-  final String year;
-  final int fullTime;
-  final int partTime;
-
-  AcademicStaffYearData({
-    required this.year,
-    required this.fullTime,
-    required this.partTime,
-  });
-
-  factory AcademicStaffYearData.fromJson(Map<String, dynamic> json) {
-    return AcademicStaffYearData(
-      year: json["anno"],
-      fullTime: json["tempo_pieno"],
-      partTime: json["tempo_definito"],
-    );
-  }
-}
-
-class AdministrativeStaffYearData {
-  final String year;
-  final int fullTime;
-  final int partTime;
-  final int total;
-
-  AdministrativeStaffYearData({
-    required this.year,
-    required this.fullTime,
-    required this.partTime,
-    required this.total,
-  });
-
-  factory AdministrativeStaffYearData.fromJson(Map<String, dynamic> json) {
-    return AdministrativeStaffYearData(
-      year: json["anno"],
-      fullTime: json["full_time"],
-      partTime: json["part_time"],
-      total: json["totale"],
-    );
-  }
-}
-
 class AcademicStaffByRole {
   final List<AcademicStaffYearData> fullProfessors;
   final List<AcademicStaffYearData> associateProfessors;
@@ -184,6 +141,26 @@ class AcademicStaffByRole {
   }
 }
 
+class AcademicStaffYearData {
+  final String year;
+  final int fullTime;
+  final int partTime;
+
+  AcademicStaffYearData({
+    required this.year,
+    required this.fullTime,
+    required this.partTime,
+  });
+
+  factory AcademicStaffYearData.fromJson(Map<String, dynamic> json) {
+    return AcademicStaffYearData(
+      year: json["anno"],
+      fullTime: json["tempo_pieno"],
+      partTime: json["tempo_definito"],
+    );
+  }
+}
+
 class AdministrativeStaffByYear {
   final List<AdministrativeStaffYearData> yearlyData;
 
@@ -193,6 +170,29 @@ class AdministrativeStaffByYear {
     return AdministrativeStaffByYear(
       yearlyData:
           json.map((e) => AdministrativeStaffYearData.fromJson(e)).toList(),
+    );
+  }
+}
+
+class AdministrativeStaffYearData {
+  final String year;
+  final int fullTime;
+  final int partTime;
+  final int total;
+
+  AdministrativeStaffYearData({
+    required this.year,
+    required this.fullTime,
+    required this.partTime,
+    required this.total,
+  });
+
+  factory AdministrativeStaffYearData.fromJson(Map<String, dynamic> json) {
+    return AdministrativeStaffYearData(
+      year: json["anno"],
+      fullTime: json["full_time"],
+      partTime: json["part_time"],
+      total: json["totale"],
     );
   }
 }

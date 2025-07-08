@@ -1,3 +1,4 @@
+import 'package:app_client/core/data_categories.dart';
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/data/models/section.dart';
 import 'package:app_client/data/models/sections/people.dart';
@@ -10,15 +11,14 @@ import 'package:app_client/ui/widgets/people/remote_work_chart.dart';
 import 'package:flutter/material.dart';
 
 class PeoplePage extends SectionPage {
-  const PeoplePage({super.key})
-    : super(chapter: ChapterEnum.people, title: "Persone");
+  const PeoplePage({super.key}) : super(chapter: ChapterEnum.people);
 
   @override
   Widget buildContent(BuildContext context, Section section) {
     final peopleData = PeopleData.fromJson(section.data);
 
-    return BaseScaffold(
-      title: title,
+    return BaseDataCategoryPageScaffold(
+      category: DataCategory.people,
       body: Column(
         children: [
           PeopleSummaryGrid(summary: peopleData.summary),

@@ -1,4 +1,4 @@
-import "package:app_client/core/categories.dart";
+import "package:app_client/core/data_categories.dart";
 import "package:flutter/material.dart";
 
 class WelcomePage extends StatelessWidget {

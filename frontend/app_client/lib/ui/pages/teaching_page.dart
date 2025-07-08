@@ -1,3 +1,4 @@
+import 'package:app_client/core/data_categories.dart';
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/data/models/section.dart';
 import 'package:app_client/data/models/sections/teaching.dart';
@@ -10,15 +11,14 @@ import 'package:app_client/ui/widgets/teaching/teaching_summary_grid.dart';
 import 'package:flutter/material.dart';
 
 class TeachingPage extends SectionPage {
-  const TeachingPage({super.key})
-    : super(chapter: ChapterEnum.teaching, title: "Didattica");
+  const TeachingPage({super.key}) : super(chapter: ChapterEnum.teaching);
 
   @override
   Widget buildContent(BuildContext context, Section section) {
     final teachingData = TeachingData.fromJson(section.data);
 
-    return BaseScaffold(
-      title: title,
+    return BaseDataCategoryPageScaffold(
+      category: DataCategory.teaching,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

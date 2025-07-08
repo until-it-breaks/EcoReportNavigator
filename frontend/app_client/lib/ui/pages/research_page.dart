@@ -1,3 +1,4 @@
+import 'package:app_client/core/data_categories.dart';
 import 'package:app_client/data/data_repository.dart';
 import 'package:app_client/data/models/section.dart';
 import 'package:app_client/data/models/sections/research.dart';
@@ -8,15 +9,14 @@ import 'package:app_client/ui/widgets/research/research_summary_grid.dart';
 import 'package:flutter/cupertino.dart';
 
 class ResearchPage extends SectionPage {
-  const ResearchPage({super.key})
-    : super(chapter: ChapterEnum.research, title: "Ricerca");
+  const ResearchPage({super.key}) : super(chapter: ChapterEnum.research);
 
   @override
   Widget buildContent(BuildContext context, Section section) {
     final researchData = ResearchData.fromJson(section.data);
 
-    return BaseScaffold(
-      title: title,
+    return BaseDataCategoryPageScaffold(
+      category: DataCategory.research,
       body: Column(
         children: [
           ResearchSummaryGrid(summary: researchData.researchSummary),

@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 
 abstract class SectionPage extends StatefulWidget {
   final ChapterEnum chapter;
-  final String title;
 
-  const SectionPage({super.key, required this.chapter, required this.title});
+  const SectionPage({super.key, required this.chapter});
 
   Widget buildContent(BuildContext context, Section section);
 

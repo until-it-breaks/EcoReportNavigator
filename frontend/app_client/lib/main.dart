@@ -1,5 +1,4 @@
 import 'package:app_client/routes/app_routes.dart';
-import 'package:app_client/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +13,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: "Flutter JSON Demo",
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: AppRoutes.welcome,
+      initialRoute: AppRoute.welcome.path,
       routes: appRoutes,
     );
   }

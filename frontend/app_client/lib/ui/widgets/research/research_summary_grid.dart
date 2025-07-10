@@ -18,7 +18,7 @@ class ResearchSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.school,
-          label: "Assegni di ricerca",
+          label: "Assegni di Ricerca",
           value: summary.researchGrants.toString(),
         ),
         SummaryItem(
@@ -28,7 +28,7 @@ class ResearchSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.monetization_on,
-          label: summary.cascadeFundingPnrrPnc.description,
+          label: "PNRR e PNC",
           value:
               "${summary.cascadeFundingPnrrPnc.value} ${summary.cascadeFundingPnrrPnc.unit}",
         ),

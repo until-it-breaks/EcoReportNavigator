@@ -18,7 +18,7 @@ class EconomicSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.arrow_upward,
-          label: "Valore distribuito",
+          label: "Valore Distribuito",
           value: _formatValue(summary.distributedValue),
         ),
         SummaryItem(
@@ -28,7 +28,7 @@ class EconomicSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.eco,
-          label: "Acquisti verdi",
+          label: "Acquisti Verdi",
           value: summary.greenPurchasesPercentage,
           percentageChange: null,
         ),

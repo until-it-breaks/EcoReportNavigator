@@ -13,12 +13,12 @@ class SocietySummaryGrid extends StatelessWidget {
       items: [
         SummaryItem(
           icon: Icons.school,
-          label: "Borse di Studio Finanziate Esternamente",
+          label: "Borse di Studio Finanziate dall'Esterno",
           value: summary.externallyFundedScholarships.toString(),
         ),
         SummaryItem(
           icon: Icons.event,
-          label: "Eventi Promossi (2023)",
+          label: "Eventi Promossi nel 2023",
           value: summary.eventsPromotedIn2023.toString(),
         ),
         SummaryItem(
@@ -38,7 +38,7 @@ class SocietySummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.article,
-          label: "Articoli ed Eventi Magazine",
+          label: "Articoli ed Eventi da Unibo Magazine",
           value: summary.magazineArticlesAndEvents.toString(),
         ),
         SummaryItem(
@@ -48,7 +48,7 @@ class SocietySummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.cast_for_education,
-          label: "Corsi Alta/Formazione Continua",
+          label: "Corsi di Alta Formazione e Formazione Continua",
           value: summary.advancedAndContinuingEducationCourses.toString(),
         ),
       ],

@@ -6,7 +6,7 @@ import 'package:app_client/ui/pages/section_page.dart';
 import 'package:app_client/ui/widgets/base_scaffold.dart';
 import 'package:app_client/ui/widgets/environment/carbon_footprint_table.dart';
 import 'package:app_client/ui/widgets/environment/environment_summary_grid.dart';
-import 'package:app_client/ui/widgets/environment/milestones_gantt_chart.dart';
+import 'package:app_client/ui/widgets/environment/green_milestones_table.dart';
 import 'package:flutter/material.dart';
 
 class EnvironmentPage extends SectionPage {

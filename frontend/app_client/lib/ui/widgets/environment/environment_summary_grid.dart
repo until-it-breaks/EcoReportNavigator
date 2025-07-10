@@ -18,7 +18,7 @@ class EnvironmentSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.eco,
-          label: "Insegnamenti Ambientali",
+          label: "Insegnamenti su Tematiche Ambientali",
           value: summary.environmentalCourses.toString(),
         ),
         SummaryItem(
@@ -33,7 +33,7 @@ class EnvironmentSummaryGrid extends StatelessWidget {
         ),
         SummaryItem(
           icon: Icons.euro,
-          label: "Spesa per Abbonamenti",
+          label: "Spesa per Abbonamenti Agevolati",
           value: _formatMeasured(summary.subscriptionSpending),
         ),
       ],

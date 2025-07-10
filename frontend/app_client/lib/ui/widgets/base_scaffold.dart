@@ -1,4 +1,6 @@
 import 'package:app_client/core/data_categories.dart';
+import 'package:app_client/main.dart';
+import 'package:app_client/ui/widgets/theme_toggle_button.dart';
 import 'package:flutter/material.dart';
 
 class BaseDataCategoryPageScaffold extends StatelessWidget {
@@ -32,6 +34,7 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
             ),
           ],
         ),
+        actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
       ),
       body: Padding(
         padding: const EdgeInsets.all(0),

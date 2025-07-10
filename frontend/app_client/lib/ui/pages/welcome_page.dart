@@ -1,4 +1,6 @@
 import "package:app_client/core/data_categories.dart";
+import "package:app_client/main.dart";
+import "package:app_client/ui/widgets/theme_toggle_button.dart";
 import "package:flutter/material.dart";
 
 class WelcomePage extends StatelessWidget {
@@ -19,6 +21,10 @@ class WelcomePage extends StatelessWidget {
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Center(

@@ -64,7 +64,7 @@ class _FacilityStat extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(icon, color: theme.primaryColor),
+            Icon(icon, color: theme.colorScheme.primary),
             SizedBox(width: 8),
             Text(label),
           ],

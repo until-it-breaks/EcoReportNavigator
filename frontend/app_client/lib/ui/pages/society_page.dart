@@ -19,6 +19,7 @@ class SocietyPage extends SectionPage {
     return BaseDataCategoryPageScaffold(
       category: DataCategory.society,
       body: Column(
+        spacing: 12,
         children: [
           SocietySummaryGrid(summary: societyData.societySummary),
           InternshipAgreementsPieChart(data: societyData.internshipAgreements),

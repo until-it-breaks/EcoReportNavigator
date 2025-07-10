@@ -39,6 +39,7 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
           ],
         ),
         actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
+        actionsPadding: EdgeInsets.all(8),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

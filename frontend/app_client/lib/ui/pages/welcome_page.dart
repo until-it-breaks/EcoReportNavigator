@@ -24,6 +24,7 @@ class WelcomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
+        actionsPadding: EdgeInsets.all(8),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),

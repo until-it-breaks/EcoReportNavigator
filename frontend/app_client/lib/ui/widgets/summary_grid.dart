@@ -31,8 +31,8 @@ class SummaryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: theme.primaryColor.withAlpha(25),
-              foregroundColor: theme.primaryColor,
+              backgroundColor: theme.colorScheme.primary.withAlpha(25),
+              foregroundColor: theme.colorScheme.primary,
               child: Icon(item.icon),
             ),
             const SizedBox(width: 16),

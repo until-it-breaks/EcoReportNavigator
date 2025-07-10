@@ -20,17 +20,20 @@ class EconomicPage extends SectionPage {
       category: DataCategory.economic,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 12,
         children: [
           EconomicSummaryGrid(summary: economicData.summary),
           EconomicDetailTable(
             title: "Valore economico attratto",
             data: economicData.attractedDetailed,
+            icon: Icons.arrow_downward,
           ),
           EconomicDetailTable(
             title: "Valore economico distribuito",
             data: economicData.distributedDetailed,
+            icon: Icons.arrow_upward,
           ),
-          GreenPurchasesCard(data: economicData.greenPurchases),
+          GreenPurchasesCard(greenPurchases: economicData.greenPurchases),
         ],
       ),
     );

@@ -2,45 +2,47 @@ import 'package:app_client/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
 
 class GreenPurchasesCard extends StatelessWidget {
-  final GreenPurchases data;
+  final GreenPurchases greenPurchases;
 
-  const GreenPurchasesCard({super.key, required this.data});
+  const GreenPurchasesCard({super.key, required this.greenPurchases});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.symmetric(vertical: 16),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 16,
           children: [
-            Text(
-              "Acquisti Verdi",
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 8,
+                children: [
+                  Icon(Icons.eco, color: theme.colorScheme.primary),
+                  Text("Acquisti verdi", style: theme.textTheme.titleLarge),
+                ],
               ),
             ),
-            const SizedBox(height: 16),
             Row(
               children: [
-                _GreenValueItem(
+                _GreenMilestone(
                   label: "2022",
-                  value: data.percentageOf2022,
+                  value: greenPurchases.percentageOf2022,
                   icon: Icons.calendar_today,
                 ),
-                _GreenValueItem(
+                _GreenMilestone(
                   label: "2023",
-                  value: data.percentageOf2023,
-                  icon: Icons.check_circle,
+                  value: greenPurchases.percentageOf2023,
+                  icon: Icons.expand_more,
                   highlight: true,
                 ),
-                _GreenValueItem(
+                _GreenMilestone(
                   label: "Target 2024",
-                  value: data.targetPercentageOf2024,
+                  value: greenPurchases.targetPercentageOf2024,
                   icon: Icons.flag,
                 ),
               ],
@@ -52,13 +54,13 @@ class GreenPurchasesCard extends StatelessWidget {
   }
 }
 
-class _GreenValueItem extends StatelessWidget {
+class _GreenMilestone extends StatelessWidget {
   final String label;
   final String value;
   final IconData icon;
   final bool highlight;
 
-  const _GreenValueItem({
+  const _GreenMilestone({
     required this.label,
     required this.value,
     required this.icon,
@@ -67,21 +69,22 @@ class _GreenValueItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = highlight ? Theme.of(context).primaryColor : Colors.grey[600];
+    final theme = Theme.of(context);
+    final color =
+        highlight ? theme.colorScheme.primary : theme.colorScheme.secondary;
 
     return Expanded(
       child: Column(
+        spacing: 4,
         children: [
           Icon(icon, color: color),
-          const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(color: color, fontWeight: FontWeight.w600),
           ),
-          const SizedBox(height: 4),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: highlight ? FontWeight.bold : FontWeight.normal,
               color: color,
             ),

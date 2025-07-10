@@ -43,6 +43,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                     touchCallback: (event, response) {
                       if (!event.isInterestedForInteractions ||
                           response == null) {
+                        setState(() => touchedIndex = null);
                         return;
                       }
                       setState(() {
@@ -74,6 +75,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                 final section = sections[i];
                 return Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: 4,
                   children: [
                     Container(
                       width: 12,
@@ -83,7 +85,6 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 4),
                     Text(section.name),
                   ],
                 );

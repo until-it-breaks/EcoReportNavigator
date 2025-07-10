@@ -6,7 +6,7 @@ import 'package:app_client/ui/pages/section_page.dart';
 import 'package:app_client/ui/widgets/base_scaffold.dart';
 import 'package:app_client/ui/widgets/research/pnrr_pie_chart.dart';
 import 'package:app_client/ui/widgets/research/research_summary_grid.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ResearchPage extends SectionPage {
   const ResearchPage({super.key}) : super(chapter: ChapterEnum.research);
@@ -18,6 +18,7 @@ class ResearchPage extends SectionPage {
     return BaseDataCategoryPageScaffold(
       category: DataCategory.research,
       body: Column(
+        spacing: 12,
         children: [
           ResearchSummaryGrid(summary: researchData.researchSummary),
           PnrrPieChart(data: researchData.pnrr),

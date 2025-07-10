@@ -20,66 +20,62 @@ class _PnrrPieChartState extends State<PnrrPieChart> {
     final sections = widget.data.fundDistributionByMission;
     final colors = Colors.primaries.take(sections.length).toList();
 
+    final theme = Theme.of(context);
+
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.symmetric(vertical: 16),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          spacing: 24,
           children: [
             Text(
               "Ripartizione Fondi per Missione (PNRR)",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 16),
             SizedBox(
-              height: 220,
+              height: 200,
               child: PieChart(
                 PieChartData(
                   sectionsSpace: 2,
-                  centerSpaceRadius: 40,
+                  centerSpaceRadius: 48,
                   pieTouchData: PieTouchData(
                     touchCallback: (event, response) {
                       if (!event.isInterestedForInteractions ||
-                          response?.touchedSection == null) {
+                          response == null) {
                         setState(() => touchedIndex = null);
                         return;
                       }
                       setState(() {
                         touchedIndex =
-                            response!.touchedSection!.touchedSectionIndex;
+                            response.touchedSection?.touchedSectionIndex;
                       });
                     },
                   ),
                   sections: List.generate(sections.length, (i) {
-                    final fund = sections[i];
-                    final percent = parsePercentage(fund.percentage);
+                    final section = sections[i];
+                    final percent = parsePercentage(section.percentage);
                     final isTouched = i == touchedIndex;
-
                     return PieChartSectionData(
                       value: percent,
                       title: "${percent.toStringAsFixed(1)}%",
                       color: colors[i % colors.length],
                       radius: isTouched ? 70 : 60,
-                      titleStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
                     );
                   }),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            // Legend
             Wrap(
+              alignment: WrapAlignment.center,
               spacing: 16,
               runSpacing: 8,
               children: List.generate(sections.length, (i) {
-                final fund = sections[i];
+                final section = sections[i];
                 return Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: 4,
                   children: [
                     Container(
                       width: 12,
@@ -89,10 +85,9 @@ class _PnrrPieChartState extends State<PnrrPieChart> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 4),
                     Flexible(
                       child: Text(
-                        fund.mission,
+                        section.mission,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),

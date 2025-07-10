@@ -34,8 +34,11 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(child: body),
+        padding: const EdgeInsets.all(0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: body,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},

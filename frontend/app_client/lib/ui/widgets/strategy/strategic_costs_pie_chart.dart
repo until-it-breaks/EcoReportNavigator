@@ -20,25 +20,25 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
     final sections = widget.data.scopes;
     final colors = Colors.primaries.take(sections.length).toList();
 
+    final theme = Theme.of(context);
+
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.symmetric(vertical: 16),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          spacing: 24,
           children: [
             Text(
               "Distribuzione dei Costi Strategici",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 16),
             SizedBox(
               height: 200,
               child: PieChart(
                 PieChartData(
                   sectionsSpace: 2,
-                  centerSpaceRadius: 40,
+                  centerSpaceRadius: 48,
                   pieTouchData: PieTouchData(
                     touchCallback: (event, response) {
                       if (!event.isInterestedForInteractions ||
@@ -52,30 +52,26 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                     },
                   ),
                   sections: List.generate(sections.length, (i) {
-                    final s = sections[i];
-                    final percent = parsePercentage(s.percentage);
+                    final section = sections[i];
+                    final percent = parsePercentage(section.percentage);
                     final isTouched = i == touchedIndex;
                     return PieChartSectionData(
                       value: percent,
-                      title: s.percentage,
+                      title: section.percentage,
                       color: colors[i % colors.length],
-                      radius: isTouched ? 70 : 60,
-                      titleStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      radius: isTouched ? 72 : 64,
                     );
                   }),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
             // Legend
             Wrap(
+              alignment: WrapAlignment.center,
               spacing: 16,
               runSpacing: 8,
               children: List.generate(sections.length, (i) {
-                final s = sections[i];
+                final section = sections[i];
                 return Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -88,7 +84,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    Text(s.name),
+                    Text(section.name),
                   ],
                 );
               }),

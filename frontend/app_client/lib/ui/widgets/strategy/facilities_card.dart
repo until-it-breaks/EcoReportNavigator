@@ -8,19 +8,34 @@ class FacilitiesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Column(
+          spacing: 12,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _FacilityStat(label: "Scuole", count: facilities.schoolAmount),
-            _FacilityStat(
-              label: "Dipartimenti",
-              count: facilities.departmentAmount,
+            Center(
+              child: Text("Strutture", style: theme.textTheme.headlineSmall),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _FacilityStat(
+                  label: "Scuole",
+                  count: facilities.schoolAmount,
+                  icon: Icons.account_balance,
+                ),
+                _FacilityStat(
+                  label: "Dipartimenti",
+                  count: facilities.departmentAmount,
+                  icon: Icons.apartment,
+                ),
+              ],
             ),
           ],
         ),
@@ -32,20 +47,28 @@ class FacilitiesCard extends StatelessWidget {
 class _FacilityStat extends StatelessWidget {
   final String label;
   final int count;
+  final IconData? icon;
 
-  const _FacilityStat({required this.label, required this.count});
+  const _FacilityStat({required this.label, required this.count, this.icon});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       children: [
         Text(
           "$count",
-          style: Theme.of(
-            context,
-          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+          style: theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Text(label),
+        Row(
+          children: [
+            Icon(icon, color: theme.primaryColor),
+            SizedBox(width: 8),
+            Text(label),
+          ],
+        ),
       ],
     );
   }

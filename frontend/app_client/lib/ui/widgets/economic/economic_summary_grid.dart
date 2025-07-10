@@ -29,15 +29,14 @@ class EconomicSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.eco,
           label: "Acquisti verdi",
-          value: summary.greenPurchasesPercentage.toString(),
+          value: summary.greenPurchasesPercentage,
           percentageChange: null,
         ),
       ],
     );
   }
 
-  String _formatValue(ValueWithUnit? value) {
-    if (value == null) return "-";
-    return "${value.value.toStringAsFixed(2)} ${value.unitOfMeasure}";
+  String _formatValue(ValueWithUnit value) {
+    return "${value.value.toStringAsFixed(0)} ${value.unitOfMeasure}";
   }
 }

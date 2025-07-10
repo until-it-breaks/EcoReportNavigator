@@ -24,24 +24,22 @@ class SummaryCard extends StatelessWidget {
     final theme = Theme.of(context);
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 16,
           children: [
             CircleAvatar(
               backgroundColor: theme.colorScheme.primary.withAlpha(25),
               foregroundColor: theme.colorScheme.primary,
               child: Icon(item.icon),
             ),
-            const SizedBox(width: 16),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 4,
                 children: [
                   Text(item.label, style: theme.textTheme.bodyLarge),
-                  const SizedBox(height: 4),
                   RichText(
                     text: TextSpan(
                       style: theme.textTheme.titleMedium?.copyWith(
@@ -54,7 +52,6 @@ class SummaryCard extends StatelessWidget {
                           TextSpan(
                             text: '(${item.percentageChange})',
                             style: TextStyle(
-                              fontWeight: FontWeight.normal,
                               color:
                                   item.percentageChange!.startsWith('-')
                                       ? Colors.red
@@ -82,20 +79,27 @@ class SummaryGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isWide = screenWidth > 600;
-    final itemWidth = isWide ? (screenWidth - 64) / 2 : screenWidth;
+    final spacing = 16.0;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
+        final isWide = maxWidth > 600;
+        final itemWidth = isWide ? (maxWidth - spacing) / 2 : maxWidth;
 
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children:
-          items
-              .map(
-                (item) =>
-                    SizedBox(width: itemWidth, child: SummaryCard(item: item)),
-              )
-              .toList(),
+        return Wrap(
+          spacing: spacing,
+          runSpacing: 12,
+          children:
+              items
+                  .map(
+                    (item) => SizedBox(
+                      width: itemWidth,
+                      child: SummaryCard(item: item),
+                    ),
+                  )
+                  .toList(),
+        );
+      },
     );
   }
 }

@@ -19,6 +19,8 @@ class EnvironmentPage extends SectionPage {
     return BaseDataCategoryPageScaffold(
       category: DataCategory.environment,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 12,
         children: [
           EnvironmentSummaryGrid(summary: environmentData.summary),
           MilestoneTable(milestones: environmentData.energyPlanMilestones),

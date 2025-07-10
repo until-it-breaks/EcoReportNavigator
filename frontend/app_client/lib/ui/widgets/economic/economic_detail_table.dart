@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:app_client/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
 
-class EconomicDetailTable extends StatelessWidget {
+class EconomicDetailTable extends StatefulWidget {
   final String title;
   final EconomicValueDetailed data;
   final IconData? icon;
@@ -14,25 +16,39 @@ class EconomicDetailTable extends StatelessWidget {
   });
 
   @override
+  State<EconomicDetailTable> createState() => _EconomicDetailTableState();
+}
+
+class _EconomicDetailTableState extends State<EconomicDetailTable> {
+  final ScrollController _horizontalController = ScrollController();
+
+  @override
+  void dispose() {
+    _horizontalController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 16,
           children: [
             Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 spacing: 8,
                 children: [
-                  Icon(icon, color: theme.colorScheme.primary),
+                  Icon(widget.icon, color: theme.colorScheme.primary),
                   Flexible(
                     child: Text(
-                      title,
+                      widget.title,
                       style: theme.textTheme.titleLarge,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -40,15 +56,22 @@ class EconomicDetailTable extends StatelessWidget {
                 ],
               ),
             ),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final maxWidth = constraints.maxWidth;
-                final maxVoceWidth = maxWidth / 2;
-                final theme = Theme.of(context);
-
-                return SingleChildScrollView(
+            ScrollConfiguration(
+              behavior: const MaterialScrollBehavior().copyWith(
+                dragDevices: {
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.trackpad,
+                },
+              ),
+              child: Scrollbar(
+                controller: _horizontalController,
+                thumbVisibility: false,
+                child: SingleChildScrollView(
+                  controller: _horizontalController,
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
+                    columnSpacing: 24,
                     columns: [
                       DataColumn(
                         label: Text(
@@ -77,16 +100,12 @@ class EconomicDetailTable extends StatelessWidget {
                         ),
                       ),
                     ],
-                    columnSpacing: 24,
                     rows:
-                        data.entries.map((entry) {
+                        widget.data.entries.map((entry) {
                           return DataRow(
                             cells: [
                               DataCell(
                                 Container(
-                                  constraints: BoxConstraints(
-                                    maxWidth: maxVoceWidth,
-                                  ),
                                   alignment: Alignment.centerLeft,
                                   child: Text(entry.name),
                                 ),
@@ -94,7 +113,7 @@ class EconomicDetailTable extends StatelessWidget {
                               DataCell(
                                 Center(
                                   child: Text(
-                                    "${entry.value.toStringAsFixed(0)} ${data.unitOfMeasure}",
+                                    "${entry.value.toStringAsFixed(0)} ${widget.data.unitOfMeasure}",
                                   ),
                                 ),
                               ),
@@ -103,8 +122,8 @@ class EconomicDetailTable extends StatelessWidget {
                           );
                         }).toList(),
                   ),
-                );
-              },
+                ),
+              ),
             ),
           ],
         ),

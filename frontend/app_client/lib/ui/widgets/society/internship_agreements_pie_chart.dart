@@ -22,29 +22,32 @@ class _InternshipAgreementsPieChartState
     final sections = widget.data.categories;
     final colors = Colors.primaries.take(sections.length).toList();
 
+    final theme = Theme.of(context);
+
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.symmetric(vertical: 16),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 24,
           children: [
             Text(
               "Distribuzione Convenzioni di Tirocinio",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 16),
             SizedBox(
               height: 200,
               child: PieChart(
                 PieChartData(
                   sectionsSpace: 2,
-                  centerSpaceRadius: 40,
+                  centerSpaceRadius: 48,
                   pieTouchData: PieTouchData(
                     touchCallback: (event, response) {
                       if (!event.isInterestedForInteractions ||
                           response == null) {
+                        setState(() => touchedIndex = null);
                         return;
                       }
                       setState(() {
@@ -54,32 +57,29 @@ class _InternshipAgreementsPieChartState
                     },
                   ),
                   sections: List.generate(sections.length, (i) {
-                    final category = sections[i];
-                    final percent = parsePercentage(category.percentage);
+                    final section = sections[i];
+                    final percent = parsePercentage(section.percentage);
                     final isTouched = i == touchedIndex;
 
                     return PieChartSectionData(
                       value: percent,
-                      title: category.percentage,
+                      title: section.percentage,
                       color: colors[i % colors.length],
-                      radius: isTouched ? 70 : 60,
-                      titleStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      radius: isTouched ? 72 : 64,
                     );
                   }),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
             Wrap(
+              alignment: WrapAlignment.center,
               spacing: 16,
               runSpacing: 8,
               children: List.generate(sections.length, (i) {
-                final category = sections[i];
+                final section = sections[i];
                 return Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: 4,
                   children: [
                     Container(
                       width: 12,
@@ -89,16 +89,14 @@ class _InternshipAgreementsPieChartState
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 4),
-                    Text(category.category),
+                    Text(section.category),
                   ],
                 );
               }),
             ),
-            const SizedBox(height: 12),
             Text(
               "Totale convenzioni: ${widget.data.totalAgreements}",
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: theme.textTheme.bodyMedium,
             ),
           ],
         ),

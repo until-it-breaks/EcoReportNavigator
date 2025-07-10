@@ -21,31 +21,32 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 8,
           children: [
             Icon(
               category.icon,
               size: 36,
               color: Theme.of(context).colorScheme.primary,
             ),
-            const SizedBox(width: 8),
-            Text(
-              category.name,
-              style: Theme.of(context).textTheme.headlineMedium,
+            Flexible(
+              child: Text(
+                category.name,
+                style: Theme.of(context).textTheme.headlineSmall,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ),
           ],
         ),
         actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(0),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: body,
-        ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: body,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
-        child: const Icon(Icons.smart_toy),
+        child: const Icon(Icons.chat),
       ),
     );
   }

@@ -24,9 +24,7 @@ class TeachingPage extends SectionPage {
         children: [
           TeachingSummaryGrid(summary: teachingData.summary),
           ActiveCoursesBarChart(activeCourses: teachingData.activeCourses),
-          GenderEnrollmentChart(
-            enrollmentByGender: teachingData.enrollmentByGender,
-          ),
+          GenderPieCharts(enrollmentByGender: teachingData.enrollmentByGender),
         ],
       ),
     );

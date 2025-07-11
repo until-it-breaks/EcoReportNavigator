@@ -1,14 +1,12 @@
 class TeachingData {
   final TeachingSummary summary;
-  final List<ActiveCourses> activeCourses;
+  final List<ActiveCourse> activeCourses;
   final EnrollmentByGender enrollmentByGender;
-  final List<SdgsTeaching> sdgsTeachings;
 
   TeachingData({
     required this.summary,
     required this.activeCourses,
     required this.enrollmentByGender,
-    required this.sdgsTeachings,
   });
 
   factory TeachingData.fromJson(Map<String, dynamic> json) {
@@ -18,15 +16,11 @@ class TeachingData {
       ),
       activeCourses:
           (json["corsi_attivati"] as List)
-              .map((e) => ActiveCourses.fromJson(e))
+              .map((e) => ActiveCourse.fromJson(e))
               .toList(),
       enrollmentByGender: EnrollmentByGender.fromJson(
         json["composizione_iscrizioni_per_genere"],
       ),
-      sdgsTeachings:
-          (json["insegnamenti_per_sdgs"] as List)
-              .map((e) => SdgsTeaching.fromJson(e))
-              .toList(),
     );
   }
 }
@@ -60,16 +54,16 @@ class TeachingSummary {
   }
 }
 
-class ActiveCourses {
+class ActiveCourse {
   final String name;
-  final List<YearlyCourseData> years;
+  final List<YearlyCourseData> yearlyInfo;
 
-  ActiveCourses({required this.name, required this.years});
+  ActiveCourse({required this.name, required this.yearlyInfo});
 
-  factory ActiveCourses.fromJson(Map<String, dynamic> json) {
-    return ActiveCourses(
+  factory ActiveCourse.fromJson(Map<String, dynamic> json) {
+    return ActiveCourse(
       name: json["nome"],
-      years:
+      yearlyInfo:
           (json["anni"] as List)
               .map((e) => YearlyCourseData.fromJson(e))
               .toList(),
@@ -79,12 +73,12 @@ class ActiveCourses {
 
 class YearlyCourseData {
   final String year;
-  final int value;
+  final int amount;
 
-  YearlyCourseData({required this.year, required this.value});
+  YearlyCourseData({required this.year, required this.amount});
 
   factory YearlyCourseData.fromJson(Map<String, dynamic> json) {
-    return YearlyCourseData(year: json["anno"], value: json["valore"]);
+    return YearlyCourseData(year: json["anno"], amount: json["valore"]);
   }
 }
 
@@ -133,20 +127,6 @@ class EnrollmentByGender {
           (json["totale"] as List)
               .map((e) => GenderComposition.fromJson(e))
               .toList(),
-    );
-  }
-}
-
-class SdgsTeaching {
-  final String goal;
-  final int courseCount;
-
-  SdgsTeaching({required this.goal, required this.courseCount});
-
-  factory SdgsTeaching.fromJson(Map<String, dynamic> json) {
-    return SdgsTeaching(
-      goal: json["goal"],
-      courseCount: json["numero_insegnamenti"],
     );
   }
 }

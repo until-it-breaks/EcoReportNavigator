@@ -6,7 +6,6 @@ import 'package:app_client/ui/pages/section_page.dart';
 import 'package:app_client/ui/widgets/base_scaffold.dart';
 import 'package:app_client/ui/widgets/teaching/active_courses_bar_chart.dart';
 import 'package:app_client/ui/widgets/teaching/gender_enrollment_chart.dart';
-import 'package:app_client/ui/widgets/teaching/sdgs_teaching_chart.dart';
 import 'package:app_client/ui/widgets/teaching/teaching_summary_grid.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +19,7 @@ class TeachingPage extends SectionPage {
     return BaseDataCategoryPageScaffold(
       category: DataCategory.teaching,
       body: Column(
+        spacing: 12,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TeachingSummaryGrid(summary: teachingData.summary),
@@ -27,7 +27,6 @@ class TeachingPage extends SectionPage {
           GenderEnrollmentChart(
             enrollmentByGender: teachingData.enrollmentByGender,
           ),
-          SdgsTeachingChart(sdgsTeachings: teachingData.sdgsTeachings),
         ],
       ),
     );

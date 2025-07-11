@@ -19,9 +19,7 @@ class FacilitiesCard extends StatelessWidget {
           spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text("Strutture", style: theme.textTheme.headlineSmall),
-            ),
+            Center(child: Text("Strutture", style: theme.textTheme.titleLarge)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

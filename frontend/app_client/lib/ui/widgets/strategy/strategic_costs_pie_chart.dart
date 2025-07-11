@@ -31,7 +31,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
           children: [
             Text(
               "Distribuzione dei Costi Strategici",
-              style: theme.textTheme.headlineSmall,
+              style: theme.textTheme.titleLarge,
             ),
             SizedBox(
               height: 200,

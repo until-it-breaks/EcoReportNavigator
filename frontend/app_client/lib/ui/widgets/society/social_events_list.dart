@@ -20,14 +20,7 @@ class SocialEventList extends StatelessWidget {
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: Text(
-                'Eventi',
-                style: theme.textTheme.titleLarge?.copyWith(
-                  color: colorScheme.primary,
-                ),
-              ),
-            ),
+            Center(child: Text('Eventi', style: theme.textTheme.headlineSmall)),
             ...data.events.map((event) {
               return Card(
                 elevation: 1,

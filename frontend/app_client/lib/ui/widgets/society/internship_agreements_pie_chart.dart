@@ -35,7 +35,7 @@ class _InternshipAgreementsPieChartState
           children: [
             Text(
               "Distribuzione Convenzioni di Tirocinio",
-              style: theme.textTheme.headlineSmall,
+              style: theme.textTheme.titleLarge,
             ),
             SizedBox(
               height: 200,

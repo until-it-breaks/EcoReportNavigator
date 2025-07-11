@@ -45,19 +45,17 @@ class RemoteWorkBarChart extends StatelessWidget {
     }
 
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 3,
-      margin: const EdgeInsets.symmetric(vertical: 16),
+      elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Lavoro da Remoto per Tipologia e Anno',
+              'Lavoro da Remoto',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: 16),
             SizedBox(
               height: 300,
               child: BarChart(
@@ -66,6 +64,7 @@ class RemoteWorkBarChart extends StatelessWidget {
                   titlesData: FlTitlesData(
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
+                        maxIncluded: false,
                         showTitles: true,
                         reservedSize: 40,
                         getTitlesWidget: (value, meta) {
@@ -90,6 +89,12 @@ class RemoteWorkBarChart extends StatelessWidget {
                         },
                       ),
                     ),
+                    rightTitles: AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
                   ),
                   gridData: FlGridData(show: true),
                   borderData: FlBorderData(show: false),
@@ -97,10 +102,10 @@ class RemoteWorkBarChart extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
             // Legend
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              spacing: 8,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildLegendDot(barColors[0], '2021'),
                 _buildLegendDot(barColors[1], '2022'),

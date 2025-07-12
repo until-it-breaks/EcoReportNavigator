@@ -23,7 +23,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: theme.scaffoldBackgroundColor,
         actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
         actionsPadding: EdgeInsets.all(8),
       ),

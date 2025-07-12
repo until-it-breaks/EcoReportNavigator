@@ -1,11 +1,11 @@
 class SocietyData {
   final SocietySummary societySummary;
   final InternshipAgreementsData internshipAgreements;
-  final Events events;
+  final List<SocialEvent> socialEvents;
   SocietyData({
     required this.societySummary,
     required this.internshipAgreements,
-    required this.events,
+    required this.socialEvents,
   });
 
   factory SocietyData.fromJson(Map<String, dynamic> json) {
@@ -14,7 +14,10 @@ class SocietyData {
       internshipAgreements: InternshipAgreementsData.fromJson(
         json["convenzioni_attive_per_tirocini_2023"],
       ),
-      events: Events.fromJson(json["eventi"]),
+      socialEvents:
+          (json["eventi"] as List)
+              .map((item) => SocialEvent.fromJson(item))
+              .toList(),
     );
   }
 }
@@ -57,17 +60,17 @@ class SocietySummary {
 }
 
 class InternshipAgreementsData {
-  final List<InternshipAgreementCategory> categories;
+  final List<InternshipAgreementCategory> agreements;
   final int totalAgreements;
 
   InternshipAgreementsData({
-    required this.categories,
+    required this.agreements,
     required this.totalAgreements,
   });
 
   factory InternshipAgreementsData.fromJson(Map<String, dynamic> json) {
     return InternshipAgreementsData(
-      categories:
+      agreements:
           (json["categorie"] as List)
               .map((item) => InternshipAgreementCategory.fromJson(item))
               .toList(),
@@ -77,39 +80,26 @@ class InternshipAgreementsData {
 }
 
 class InternshipAgreementCategory {
-  final String category;
+  final String name;
   final String percentage;
 
-  InternshipAgreementCategory({
-    required this.category,
-    required this.percentage,
-  });
+  InternshipAgreementCategory({required this.name, required this.percentage});
 
   factory InternshipAgreementCategory.fromJson(Map<String, dynamic> json) {
     return InternshipAgreementCategory(
-      category: json["categoria"],
+      name: json["categoria"],
       percentage: json["percentuale"],
     );
   }
 }
 
-class Event {
-  final String type;
-  final int eventCount;
+class SocialEvent {
+  final String name;
+  final int amount;
 
-  Event({required this.type, required this.eventCount});
+  SocialEvent({required this.name, required this.amount});
 
-  factory Event.fromJson(Map<String, dynamic> json) {
-    return Event(type: json["tipologia"], eventCount: json["numero_eventi"]);
-  }
-}
-
-class Events {
-  final List<Event> events;
-
-  Events({required this.events});
-
-  factory Events.fromJson(List<dynamic> jsonList) {
-    return Events(events: jsonList.map((e) => Event.fromJson(e)).toList());
+  factory SocialEvent.fromJson(Map<String, dynamic> json) {
+    return SocialEvent(name: json["tipologia"], amount: json["numero_eventi"]);
   }
 }

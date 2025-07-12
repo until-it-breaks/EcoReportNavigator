@@ -52,13 +52,14 @@ class EconomicValueSummary {
 
 class EconomicValueDetailed {
   final String unitOfMeasure;
-  final List<EconomicEntry> entries;
+  final List<EconomicValueEntry> entries;
 
   EconomicValueDetailed({required this.unitOfMeasure, required this.entries});
 
   factory EconomicValueDetailed.fromJson(Map<String, dynamic> json) {
     final list = json["voci"] as List<dynamic>;
-    final entriesList = list.map((e) => EconomicEntry.fromJson(e)).toList();
+    final entriesList =
+        list.map((e) => EconomicValueEntry.fromJson(e)).toList();
 
     return EconomicValueDetailed(
       unitOfMeasure: json["unita_di_misura"],
@@ -67,19 +68,19 @@ class EconomicValueDetailed {
   }
 }
 
-class EconomicEntry {
+class EconomicValueEntry {
   final String name;
   final num value;
   final String percentage;
 
-  EconomicEntry({
+  EconomicValueEntry({
     required this.name,
     required this.value,
     required this.percentage,
   });
 
-  factory EconomicEntry.fromJson(Map<String, dynamic> json) {
-    return EconomicEntry(
+  factory EconomicValueEntry.fromJson(Map<String, dynamic> json) {
+    return EconomicValueEntry(
       name: json["nome"],
       value: json["valore"],
       percentage: json["percentuale"],

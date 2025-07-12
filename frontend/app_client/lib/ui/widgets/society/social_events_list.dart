@@ -2,9 +2,9 @@ import 'package:app_client/data/models/sections/society.dart';
 import 'package:flutter/material.dart';
 
 class SocialEventList extends StatelessWidget {
-  final Events data;
+  final List<SocialEvent> events;
 
-  const SocialEventList({super.key, required this.data});
+  const SocialEventList({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +13,15 @@ class SocialEventList extends StatelessWidget {
 
     return Card(
       elevation: 2,
-      color: colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(child: Text('Eventi', style: theme.textTheme.titleLarge)),
-            ...data.events.map((event) {
+            ...events.map((event) {
               return Card(
+                surfaceTintColor: theme.primaryColorLight,
                 elevation: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 4),
@@ -33,13 +32,13 @@ class SocialEventList extends StatelessWidget {
                       ),
                       foregroundColor: colorScheme.primary,
                       child: Text(
-                        event.eventCount.toString(),
+                        event.amount.toString(),
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    title: Text(event.type, style: theme.textTheme.bodyLarge),
+                    title: Text(event.name, style: theme.textTheme.bodyLarge),
                   ),
                 ),
               );

@@ -19,7 +19,7 @@ class _InternshipAgreementsPieChartState
 
   @override
   Widget build(BuildContext context) {
-    final sections = widget.data.categories;
+    final sections = widget.data.agreements;
     final colors = Colors.primaries.take(sections.length).toList();
 
     final theme = Theme.of(context);
@@ -36,6 +36,7 @@ class _InternshipAgreementsPieChartState
             Text(
               "Distribuzione Convenzioni di Tirocinio",
               style: theme.textTheme.titleLarge,
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 200,
@@ -89,7 +90,12 @@ class _InternshipAgreementsPieChartState
                         shape: BoxShape.circle,
                       ),
                     ),
-                    Text(section.category),
+                    Flexible(
+                      child: Text(
+                        section.name,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 );
               }),

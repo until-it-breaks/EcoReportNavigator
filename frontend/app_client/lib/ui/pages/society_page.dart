@@ -22,7 +22,7 @@ class SocietyPage extends SectionPage {
         children: [
           SocietySummaryGrid(summary: societyData.societySummary),
           InternshipAgreementsPieChart(data: societyData.internshipAgreements),
-          SocialEventList(data: societyData.events),
+          SocialEventList(events: societyData.socialEvents),
         ],
       ),
     );

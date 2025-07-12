@@ -21,24 +21,17 @@ class WelcomePage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        backgroundColor: theme.scaffoldBackgroundColor,
-        actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
-        actionsPadding: EdgeInsets.all(8),
-      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(
-          top: 24,
-          left: 24,
-          right: 24,
-          bottom: 48,
-        ),
+        padding: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 48),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: ThemeToggleButton(themeNotifier: themeNotifier),
+              ),
               const SizedBox(height: 32),
               Container(
                 decoration: BoxDecoration(

@@ -22,12 +22,18 @@ class WelcomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [ThemeToggleButton(themeNotifier: themeNotifier)],
         actionsPadding: EdgeInsets.all(8),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.only(
+          top: 24,
+          left: 24,
+          right: 24,
+          bottom: 48,
+        ),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

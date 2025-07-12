@@ -1081,57 +1081,57 @@
                     {
                     "nome": "Laurea",
                     "anni": [
-                        { "anno": "2021_22", "valore": 97 },
-                        { "anno": "2022_23", "valore": 101 },
-                        { "anno": "2023_24", "valore": 104 }
+                        { "anno": "2021/22", "valore": 97 },
+                        { "anno": "2022/23", "valore": 101 },
+                        { "anno": "2023/24", "valore": 104 }
                     ]
                     },
                     {
                     "nome": "Laurea magistrale",
                     "anni": [
-                        { "anno": "2021_22", "valore": 132 },
-                        { "anno": "2022_23", "valore": 137 },
-                        { "anno": "2023_24", "valore": 142 }
+                        { "anno": "2021/22", "valore": 132 },
+                        { "anno": "2022/23", "valore": 137 },
+                        { "anno": "2023/24", "valore": 142 }
                     ]
                     },
                     {
                     "nome": "Laurea magistrale a ciclo unico",
                     "anni": [
-                        { "anno": "2021_22", "valore": 14 },
-                        { "anno": "2022_23", "valore": 14 },
-                        { "anno": "2023_24", "valore": 14 }
+                        { "anno": "2021/22", "valore": 14 },
+                        { "anno": "2022/23", "valore": 14 },
+                        { "anno": "2023/24", "valore": 14 }
                     ]
                     },
                     {
                     "nome": "Scuole di specializzazione",
                     "anni": [
-                        { "anno": "2021_22", "valore": 56 },
-                        { "anno": "2022_23", "valore": 59 },
-                        { "anno": "2023_24", "valore": 59 }
+                        { "anno": "2021/22", "valore": 56 },
+                        { "anno": "2022/23", "valore": 59 },
+                        { "anno": "2023/24", "valore": 59 }
                     ]
                     },
                     {
                     "nome": "Dottorato di ricerca",
                     "anni": [
-                        { "anno": "2021_22", "valore": 48 },
-                        { "anno": "2022_23", "valore": 51 },
-                        { "anno": "2023_24", "valore": 51 }
+                        { "anno": "2021/22", "valore": 48 },
+                        { "anno": "2022/23", "valore": 51 },
+                        { "anno": "2023/24", "valore": 51 }
                     ]
                     },
                     {
                     "nome": "Master",
                     "anni": [
-                        { "anno": "2021_22", "valore": 91 },
-                        { "anno": "2022_23", "valore": 94 },
-                        { "anno": "2023_24", "valore": 86 }
+                        { "anno": "2021/22", "valore": 91 },
+                        { "anno": "2022/23", "valore": 94 },
+                        { "anno": "2023/24", "valore": 86 }
                     ]
                     },
                     {
                     "nome": "Corso di Alta Formazione e di Formazione Permanente",
                     "anni": [
-                        { "anno": "2021_22", "valore": 24 },
-                        { "anno": "2022_23", "valore": 32 },
-                        { "anno": "2023_24", "valore": 28 }
+                        { "anno": "2021/22", "valore": 24 },
+                        { "anno": "2022/23", "valore": 32 },
+                        { "anno": "2023/24", "valore": 28 }
                     ]
                     }
                 ],

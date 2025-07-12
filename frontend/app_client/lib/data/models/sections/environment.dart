@@ -1,3 +1,5 @@
+import 'package:app_client/data/models/value_with_unit.dart';
+
 class EnvironmentData {
   final EnvironmentSummary summary;
   final List<EnergyPlanMilestone> energyPlanMilestones;
@@ -22,11 +24,11 @@ class EnvironmentData {
 }
 
 class EnvironmentSummary {
-  final MeasuredValue photovoltaicSurface;
+  final ValueWithUnit photovoltaicSurface;
   final int environmentalCourses;
-  final MeasuredValue renewableEnergy;
+  final ValueWithUnit renewableEnergy;
   final int subsidizedSubscriptions;
-  final MeasuredValue subscriptionSpending;
+  final ValueWithUnit subscriptionSpending;
 
   EnvironmentSummary({
     required this.photovoltaicSurface,
@@ -38,29 +40,18 @@ class EnvironmentSummary {
 
   factory EnvironmentSummary.fromJson(Map<String, dynamic> json) {
     return EnvironmentSummary(
-      photovoltaicSurface: MeasuredValue.fromJson(
+      photovoltaicSurface: ValueWithUnit.fromJson(
         json["superficie_fotovoltaica"],
       ),
       environmentalCourses: json["insegnamenti_tematiche_ambientali"],
-      renewableEnergy: MeasuredValue.fromJson(
+      renewableEnergy: ValueWithUnit.fromJson(
         json["energia_fonti_rinnovabili"],
       ),
       subsidizedSubscriptions: json["abbonamenti_agevolati"],
-      subscriptionSpending: MeasuredValue.fromJson(
+      subscriptionSpending: ValueWithUnit.fromJson(
         json["spesa_abbonamenti_agevolati"],
       ),
     );
-  }
-}
-
-class MeasuredValue {
-  final num value;
-  final String unit;
-
-  MeasuredValue({required this.value, required this.unit});
-
-  factory MeasuredValue.fromJson(Map<String, dynamic> json) {
-    return MeasuredValue(value: json["valore"], unit: json["unita_di_misura"]);
   }
 }
 

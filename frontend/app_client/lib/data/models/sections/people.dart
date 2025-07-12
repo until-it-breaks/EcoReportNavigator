@@ -1,25 +1,14 @@
+import 'package:app_client/data/models/value_with_unit.dart';
+
 class PeopleData {
   final PeopleSummary summary;
-  final AcademicStaffByRole academicStaffByRole;
-  final AdministrativeStaffByYear administrativeStaffByYear;
   final RemoteWorkData remoteWorkStats;
 
-  PeopleData({
-    required this.summary,
-    required this.academicStaffByRole,
-    required this.administrativeStaffByYear,
-    required this.remoteWorkStats,
-  });
+  PeopleData({required this.summary, required this.remoteWorkStats});
 
   factory PeopleData.fromJson(Map<String, dynamic> json) {
     return PeopleData(
       summary: PeopleSummary.fromJson(json["persone"]),
-      academicStaffByRole: AcademicStaffByRole.fromJson(
-        json["personale_docente_e_ricercatore"],
-      ),
-      administrativeStaffByYear: AdministrativeStaffByYear.fromJson(
-        json["personale_ta_full_time_part_time"],
-      ),
       remoteWorkStats: RemoteWorkData.fromJson(
         json["i_numeri_del_lavoro_a_distanza"],
       ),
@@ -92,107 +81,13 @@ class TrainingHours {
   }
 }
 
-class Welfare {
-  final int value;
-  final String unitOfMeasure;
-
-  Welfare({required this.value, required this.unitOfMeasure});
+class Welfare extends ValueWithUnit {
+  Welfare({required super.value, required super.unitOfMeasure});
 
   factory Welfare.fromJson(Map<String, dynamic> json) {
     return Welfare(
       value: json["valore"],
       unitOfMeasure: json["unita_di_misura"],
-    );
-  }
-}
-
-class AcademicStaffByRole {
-  final List<AcademicStaffYearData> fullProfessors;
-  final List<AcademicStaffYearData> associateProfessors;
-  final List<AcademicStaffYearData> permanentResearchers;
-  final List<AcademicStaffYearData> fixedTermResearchers;
-
-  AcademicStaffByRole({
-    required this.fullProfessors,
-    required this.associateProfessors,
-    required this.permanentResearchers,
-    required this.fixedTermResearchers,
-  });
-
-  factory AcademicStaffByRole.fromJson(Map<String, dynamic> json) {
-    return AcademicStaffByRole(
-      fullProfessors:
-          (json["ordinario"] as List)
-              .map((e) => AcademicStaffYearData.fromJson(e))
-              .toList(),
-      associateProfessors:
-          (json["associato"] as List)
-              .map((e) => AcademicStaffYearData.fromJson(e))
-              .toList(),
-      permanentResearchers:
-          (json["ricercatore_a_tempo_indeterminato"] as List)
-              .map((e) => AcademicStaffYearData.fromJson(e))
-              .toList(),
-      fixedTermResearchers:
-          (json["ricercatore_a_tempo_determinato"] as List)
-              .map((e) => AcademicStaffYearData.fromJson(e))
-              .toList(),
-    );
-  }
-}
-
-class AcademicStaffYearData {
-  final String year;
-  final int fullTime;
-  final int partTime;
-
-  AcademicStaffYearData({
-    required this.year,
-    required this.fullTime,
-    required this.partTime,
-  });
-
-  factory AcademicStaffYearData.fromJson(Map<String, dynamic> json) {
-    return AcademicStaffYearData(
-      year: json["anno"],
-      fullTime: json["tempo_pieno"],
-      partTime: json["tempo_definito"],
-    );
-  }
-}
-
-class AdministrativeStaffByYear {
-  final List<AdministrativeStaffYearData> yearlyData;
-
-  AdministrativeStaffByYear({required this.yearlyData});
-
-  factory AdministrativeStaffByYear.fromJson(List<dynamic> json) {
-    return AdministrativeStaffByYear(
-      yearlyData:
-          json.map((e) => AdministrativeStaffYearData.fromJson(e)).toList(),
-    );
-  }
-}
-
-class AdministrativeStaffYearData {
-  final String year;
-  final int fullTime;
-  final int partTime;
-  final int total;
-
-  AdministrativeStaffYearData({
-    required this.year,
-    required this.fullTime,
-    required this.partTime,
-    required this.total,
-  });
-
-  factory AdministrativeStaffYearData.fromJson(Map<String, dynamic> json) {
-    return AdministrativeStaffYearData(
-      year: json["anno"],
-      fullTime: json["full_time"],
-      partTime: json["part_time"],
-      total: json["totale"],
     );
   }
 }

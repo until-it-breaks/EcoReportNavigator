@@ -1,5 +1,6 @@
 import 'package:app_client/data/models/sections/teaching.dart';
 import 'package:app_client/ui/widgets/summary_grid.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class TeachingSummaryGrid extends StatelessWidget {
@@ -14,27 +15,27 @@ class TeachingSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.school,
           label: "Corsi di Studio",
-          value: summary.courseCount.toString(),
+          value: formatIntWithThousandsSeparator(summary.courseCount),
         ),
         SummaryItem(
           icon: Icons.people,
           label: "Studenti Iscritti (2023)",
-          value: summary.enrolledStudents2023.toString(),
+          value: formatIntWithThousandsSeparator(summary.enrolledStudents2023),
         ),
         SummaryItem(
           icon: Icons.public,
           label: "Studenti Internazionali",
-          value: summary.internationalStudents.toString(),
+          value: formatIntWithThousandsSeparator(summary.internationalStudents),
         ),
         SummaryItem(
           icon: Icons.workspace_premium,
           label: "Numero Laureati",
-          value: summary.numberOfGraduates.toString(),
+          value: formatIntWithThousandsSeparator(summary.numberOfGraduates),
         ),
         SummaryItem(
           icon: Icons.card_giftcard,
           label: "Borse ER.GO",
-          value: summary.ergoScholarships.toString(),
+          value: formatIntWithThousandsSeparator(summary.ergoScholarships),
         ),
         SummaryItem(
           icon: Icons.timelapse,

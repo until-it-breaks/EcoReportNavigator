@@ -2,13 +2,10 @@ class SocietyData {
   final SocietySummary societySummary;
   final InternshipAgreementsData internshipAgreements;
   final Events events;
-  final SocialChannelsList socialChannels;
-
   SocietyData({
     required this.societySummary,
     required this.internshipAgreements,
     required this.events,
-    required this.socialChannels,
   });
 
   factory SocietyData.fromJson(Map<String, dynamic> json) {
@@ -18,9 +15,6 @@ class SocietyData {
         json["convenzioni_attive_per_tirocini_2023"],
       ),
       events: Events.fromJson(json["eventi"]),
-      socialChannels: SocialChannelsList.fromJson(
-        json["canali_social_istituzionali"],
-      ),
     );
   }
 }
@@ -117,49 +111,5 @@ class Events {
 
   factory Events.fromJson(List<dynamic> jsonList) {
     return Events(events: jsonList.map((e) => Event.fromJson(e)).toList());
-  }
-}
-
-class SocialChannel {
-  final String channel;
-  final String objective;
-  final String target;
-  final int? totalFollowers;
-  final String followersPeriod;
-  final String? growth2023;
-
-  SocialChannel({
-    required this.channel,
-    required this.objective,
-    required this.target,
-    this.totalFollowers,
-    required this.followersPeriod,
-    this.growth2023,
-  });
-
-  factory SocialChannel.fromJson(Map<String, dynamic> json) {
-    return SocialChannel(
-      channel: json["canale"],
-      objective: json["obiettivo"],
-      target: json["target"],
-      totalFollowers: json["followers_attuali_complessivi"],
-      followersPeriod: json["periodo_followers"],
-      growth2023:
-          json.containsKey("crescita_del_2023")
-              ? json["crescita_del_2023"]
-              : null,
-    );
-  }
-}
-
-class SocialChannelsList {
-  final List<SocialChannel> channels;
-
-  SocialChannelsList({required this.channels});
-
-  factory SocialChannelsList.fromJson(List<dynamic> jsonList) {
-    return SocialChannelsList(
-      channels: jsonList.map((e) => SocialChannel.fromJson(e)).toList(),
-    );
   }
 }

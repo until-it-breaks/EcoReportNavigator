@@ -1,5 +1,6 @@
 import 'package:app_client/data/models/sections/environment.dart';
 import 'package:app_client/ui/widgets/summary_grid.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class EnvironmentSummaryGrid extends StatelessWidget {
@@ -14,33 +15,37 @@ class EnvironmentSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.solar_power,
           label: "Superficie Fotovoltaica",
-          value: _formatMeasured(summary.photovoltaicSurface),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.photovoltaicSurface,
+          ),
         ),
         SummaryItem(
           icon: Icons.eco,
           label: "Insegnamenti su Tematiche Ambientali",
-          value: summary.environmentalCourses.toString(),
+          value: formatIntWithThousandsSeparator(summary.environmentalCourses),
         ),
         SummaryItem(
           icon: Icons.bolt,
           label: "Energia da Fonti Rinnovabili",
-          value: _formatMeasured(summary.renewableEnergy),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.renewableEnergy,
+          ),
         ),
         SummaryItem(
           icon: Icons.directions_bus,
           label: "Abbonamenti Agevolati",
-          value: summary.subsidizedSubscriptions.toString(),
+          value: formatIntWithThousandsSeparator(
+            summary.subsidizedSubscriptions,
+          ),
         ),
         SummaryItem(
           icon: Icons.euro,
           label: "Spesa per Abbonamenti Agevolati",
-          value: _formatMeasured(summary.subscriptionSpending),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.subscriptionSpending,
+          ),
         ),
       ],
     );
-  }
-
-  String _formatMeasured(MeasuredValue value) {
-    return "${value.value} ${value.unit}";
   }
 }

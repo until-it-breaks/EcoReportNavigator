@@ -1,5 +1,6 @@
 import 'package:app_client/data/models/sections/research.dart';
 import 'package:app_client/ui/widgets/summary_grid.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class ResearchSummaryGrid extends StatelessWidget {
@@ -14,17 +15,17 @@ class ResearchSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.science,
           label: "Progetti Horizon Europe",
-          value: summary.horizonEuropeProjects.toString(),
+          value: formatIntWithThousandsSeparator(summary.horizonEuropeProjects),
         ),
         SummaryItem(
           icon: Icons.school,
           label: "Assegni di Ricerca",
-          value: summary.researchGrants.toString(),
+          value: formatIntWithThousandsSeparator(summary.researchGrants),
         ),
         SummaryItem(
           icon: Icons.flight_takeoff,
           label: "Docenti Outgoing",
-          value: summary.outgoingProfessors.toString(),
+          value: formatIntWithThousandsSeparator(summary.outgoingProfessors),
         ),
         SummaryItem(
           icon: Icons.monetization_on,
@@ -35,12 +36,14 @@ class ResearchSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.menu_book,
           label: "Pubblicazioni",
-          value: summary.publications.toString(),
+          value: formatIntWithThousandsSeparator(summary.publications),
         ),
         SummaryItem(
           icon: Icons.people_alt,
           label: "Visiting Professors e PhD",
-          value: summary.visitingProfessorsAndPhd.toString(),
+          value: formatIntWithThousandsSeparator(
+            summary.visitingProfessorsAndPhd,
+          ),
         ),
       ],
     );

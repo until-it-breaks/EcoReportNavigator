@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:app_client/data/models/sections/environment.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class CarbonFootprintTable extends StatefulWidget {
@@ -98,10 +99,22 @@ class _CarbonFootprintTableState extends State<CarbonFootprintTable> {
                             cells: [
                               DataCell(Text(entry.area)),
                               DataCell(
-                                Center(child: Text("${entry.year2022}")),
+                                Center(
+                                  child: Text(
+                                    formatIntWithThousandsSeparator(
+                                      entry.year2022,
+                                    ),
+                                  ),
+                                ),
                               ),
                               DataCell(
-                                Center(child: Text("${entry.year2023}")),
+                                Center(
+                                  child: Text(
+                                    formatIntWithThousandsSeparator(
+                                      entry.year2023,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           );

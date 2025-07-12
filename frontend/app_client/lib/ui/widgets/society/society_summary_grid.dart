@@ -1,5 +1,6 @@
 import 'package:app_client/data/models/sections/society.dart';
 import 'package:app_client/ui/widgets/summary_grid.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class SocietySummaryGrid extends StatelessWidget {
@@ -14,42 +15,48 @@ class SocietySummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.school,
           label: "Borse di Studio Finanziate dall'Esterno",
-          value: summary.externallyFundedScholarships.toString(),
+          value: formatIntWithThousandsSeparator(
+            summary.externallyFundedScholarships,
+          ),
         ),
         SummaryItem(
           icon: Icons.event,
           label: "Eventi Promossi nel 2023",
-          value: summary.eventsPromotedIn2023.toString(),
+          value: formatIntWithThousandsSeparator(summary.eventsPromotedIn2023),
         ),
         SummaryItem(
           icon: Icons.menu_book,
           label: "Patrimonio Documentario",
-          value: summary.documentaryHeritage.toString(),
+          value: formatIntWithThousandsSeparator(summary.documentaryHeritage),
         ),
         SummaryItem(
           icon: Icons.science,
           label: "Famiglie Brevettuali",
-          value: summary.patentFamilies.toString(),
+          value: formatIntWithThousandsSeparator(summary.patentFamilies),
         ),
         SummaryItem(
           icon: Icons.business,
           label: "Spin-off e Startup",
-          value: summary.spinOffsAndStartups.toString(),
+          value: formatIntWithThousandsSeparator(summary.spinOffsAndStartups),
         ),
         SummaryItem(
           icon: Icons.article,
           label: "Articoli ed Eventi da Unibo Magazine",
-          value: summary.magazineArticlesAndEvents.toString(),
+          value: formatIntWithThousandsSeparator(
+            summary.magazineArticlesAndEvents,
+          ),
         ),
         SummaryItem(
           icon: Icons.museum,
           label: "Visitatori Musei",
-          value: summary.museumVisitors.toString(),
+          value: formatIntWithThousandsSeparator(summary.museumVisitors),
         ),
         SummaryItem(
           icon: Icons.cast_for_education,
           label: "Corsi di Alta Formazione e Formazione Continua",
-          value: summary.advancedAndContinuingEducationCourses.toString(),
+          value: formatIntWithThousandsSeparator(
+            summary.advancedAndContinuingEducationCourses,
+          ),
         ),
       ],
     );

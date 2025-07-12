@@ -1,3 +1,5 @@
+import 'package:app_client/data/models/value_with_unit.dart';
+
 class EconomicData {
   final EconomicValueSummary summary;
   final EconomicValueDetailed attractedDetailed;
@@ -44,20 +46,6 @@ class EconomicValueSummary {
       distributedValue: ValueWithUnit.fromJson(json["valore_distribuito"]),
       fivePerThousand: ValueWithUnit.fromJson(json["5x1000"]),
       greenPurchasesPercentage: json["percentuale_acquisti_verdi"],
-    );
-  }
-}
-
-class ValueWithUnit {
-  final num value;
-  final String unitOfMeasure;
-
-  ValueWithUnit({required this.value, required this.unitOfMeasure});
-
-  factory ValueWithUnit.fromJson(Map<String, dynamic> json) {
-    return ValueWithUnit(
-      value: json["valore"],
-      unitOfMeasure: json["unita_di_misura"],
     );
   }
 }

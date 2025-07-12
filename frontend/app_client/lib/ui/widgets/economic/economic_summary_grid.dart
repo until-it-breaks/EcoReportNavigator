@@ -1,5 +1,6 @@
 import 'package:app_client/data/models/sections/economic.dart';
 import 'package:app_client/ui/widgets/summary_grid.dart';
+import 'package:app_client/utility/utility.dart';
 import 'package:flutter/material.dart';
 
 class EconomicSummaryGrid extends StatelessWidget {
@@ -14,29 +15,30 @@ class EconomicSummaryGrid extends StatelessWidget {
         SummaryItem(
           icon: Icons.arrow_downward,
           label: "Valore Attratto",
-          value: _formatValue(summary.attractedValue),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.attractedValue,
+          ),
         ),
         SummaryItem(
           icon: Icons.arrow_upward,
           label: "Valore Distribuito",
-          value: _formatValue(summary.distributedValue),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.distributedValue,
+          ),
         ),
         SummaryItem(
           icon: Icons.percent,
           label: "5x1000",
-          value: _formatValue(summary.fivePerThousand),
+          value: formatValueWithUnitWithThousandsSeparator(
+            summary.fivePerThousand,
+          ),
         ),
         SummaryItem(
           icon: Icons.eco,
           label: "Acquisti Verdi",
           value: summary.greenPurchasesPercentage,
-          percentageChange: null,
         ),
       ],
     );
-  }
-
-  String _formatValue(ValueWithUnit value) {
-    return "${value.value.toStringAsFixed(0)} ${value.unitOfMeasure}";
   }
 }

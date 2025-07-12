@@ -86,7 +86,6 @@ class _ActiveCoursesBarChartState extends State<ActiveCoursesBarChart> {
                 mainAxisSize: MainAxisSize.min,
                 spacing: 8,
                 children: [
-                  Icon(Icons.co_present, color: theme.colorScheme.primary),
                   Text("Corsi Attivi", style: theme.textTheme.titleLarge),
                 ],
               ),
@@ -127,12 +126,6 @@ class _ActiveCoursesBarChartState extends State<ActiveCoursesBarChart> {
                     touchTooltipData: BarTouchTooltipData(
                       fitInsideHorizontally: true,
                       fitInsideVertically: true,
-                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                        return BarTooltipItem(
-                          rod.toY.toInt().toString(),
-                          const TextStyle(color: Colors.white),
-                        );
-                      },
                     ),
                   ),
                   titlesData: FlTitlesData(

@@ -79,7 +79,6 @@ class _GenderPieChartsState extends State<GenderPieCharts> {
                 spacing: 8,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.wc, color: theme.colorScheme.primary),
                   Flexible(
                     child: Text(
                       textAlign: TextAlign.center,

@@ -9,6 +9,7 @@ class RemoteWorkBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final entries = data.entries;
     final barGroups = <BarChartGroupData>[];
     final barColors = [Colors.blue, Colors.orange, Colors.green];
@@ -52,15 +53,18 @@ class RemoteWorkBarChart extends StatelessWidget {
           spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Lavoro da Remoto',
-              style: Theme.of(context).textTheme.titleMedium,
+            Center(
+              child: Text(
+                'Lavoro da Remoto',
+                style: theme.textTheme.titleLarge,
+              ),
             ),
             SizedBox(
               height: 300,
               child: BarChart(
                 BarChartData(
                   barGroups: barGroups,
+
                   titlesData: FlTitlesData(
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -98,11 +102,16 @@ class RemoteWorkBarChart extends StatelessWidget {
                   ),
                   gridData: FlGridData(show: true),
                   borderData: FlBorderData(show: false),
-                  barTouchData: BarTouchData(enabled: true),
+                  barTouchData: BarTouchData(
+                    enabled: true,
+                    touchTooltipData: BarTouchTooltipData(
+                      fitInsideHorizontally: true,
+                      fitInsideVertically: true,
+                    ),
+                  ),
                 ),
               ),
             ),
-            // Legend
             Row(
               spacing: 8,
               mainAxisAlignment: MainAxisAlignment.center,

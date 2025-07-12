@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app_client/data/models/sections/teaching.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +44,9 @@ class _ActiveCoursesBarChartState extends State<ActiveCoursesBarChart> {
     final theme = Theme.of(context);
 
     final maxAmount = widget.activeCourses
-        .expand((course) => course.yearlyInfo)
-        .map((data) => data.amount)
-        .fold<int>(0, (prev, amount) => amount > prev ? amount : prev);
+        .expand((c) => c.yearlyInfo)
+        .map((y) => y.amount)
+        .fold<int>(0, max);
 
     final barGroups = <BarChartGroupData>[];
 
@@ -100,7 +102,7 @@ class _ActiveCoursesBarChartState extends State<ActiveCoursesBarChart> {
                     setState(() => _selectedYear = newYear);
                   },
                   items:
-                      sortedYears
+                      sortedYears.reversed
                           .map(
                             (year) => DropdownMenuItem(
                               value: year,

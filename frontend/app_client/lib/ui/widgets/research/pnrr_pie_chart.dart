@@ -32,6 +32,7 @@ class _PnrrPieChartState extends State<PnrrPieChart> {
             Text(
               "Ripartizione Fondi per Missione (PNRR)",
               style: theme.textTheme.headlineSmall,
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 200,

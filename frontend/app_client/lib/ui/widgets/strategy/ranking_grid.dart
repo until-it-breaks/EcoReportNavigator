@@ -23,14 +23,33 @@ class RankingCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            Text(
-              '🇮🇹 Posizione In Italia: ${ranking.positionInItaly}',
-              style: theme.textTheme.bodyLarge,
+            Row(
+              children: [
+                Image.asset(
+                  'icons/flags/png100px/it.png',
+                  package: 'country_icons',
+                  width: 20,
+                  height: 14,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Posizione In Italia: ${ranking.positionInItaly}',
+                  style: theme.textTheme.bodyLarge,
+                ),
+              ],
             ),
+
             if (ranking.positionInTheWorld != null)
-              Text(
-                '🌐 Posizione Nel Mondo: ${ranking.positionInTheWorld}',
-                style: theme.textTheme.bodyLarge,
+              Row(
+                children: [
+                  Icon(Icons.public, size: 20, color: theme.iconTheme.color),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Posizione Nel Mondo: ${ranking.positionInTheWorld}',
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                ],
               ),
           ],
         ),

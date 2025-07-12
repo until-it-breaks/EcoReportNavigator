@@ -45,7 +45,7 @@ class _GenderPieChartsState extends State<GenderPieCharts> {
                         (e) => Expanded(
                           child: Padding(
                             padding: const EdgeInsets.all(8),
-                            child: _GenderPieChart(
+                            child: GenderPieChart(
                               title: e.$1,
                               composition: e.$2,
                             ),
@@ -60,10 +60,7 @@ class _GenderPieChartsState extends State<GenderPieCharts> {
                       .map(
                         (e) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: _GenderPieChart(
-                            title: e.$1,
-                            composition: e.$2,
-                          ),
+                          child: GenderPieChart(title: e.$1, composition: e.$2),
                         ),
                       )
                       .toList(),
@@ -100,7 +97,7 @@ class _GenderPieChartsState extends State<GenderPieCharts> {
                 DropdownButton<String>(
                   value: selectedYear,
                   items:
-                      availableYears
+                      availableYears.reversed
                           .map(
                             (year) => DropdownMenuItem(
                               value: year,
@@ -128,50 +125,72 @@ class _GenderPieChartsState extends State<GenderPieCharts> {
   }
 }
 
-class _GenderPieChart extends StatelessWidget {
+class GenderPieChart extends StatefulWidget {
   final String title;
   final GenderComposition composition;
 
-  const _GenderPieChart({required this.title, required this.composition});
+  const GenderPieChart({
+    super.key,
+    required this.title,
+    required this.composition,
+  });
+
+  @override
+  State<GenderPieChart> createState() => _GenderPieChartState();
+}
+
+class _GenderPieChartState extends State<GenderPieChart> {
+  int? touchedIndex;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final women = parsePercentage(composition.women);
-    final men = parsePercentage(composition.men);
+    final women = parsePercentage(widget.composition.women);
+    final men = parsePercentage(widget.composition.men);
 
     return Column(
-      spacing: 12,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: theme.textTheme.titleMedium),
+        Text(widget.title, style: theme.textTheme.titleMedium),
         SizedBox(
-          height: 180,
+          height: 200,
           child: PieChart(
             PieChartData(
               centerSpaceRadius: 36,
               sectionsSpace: 2,
+              pieTouchData: PieTouchData(
+                touchCallback: (event, response) {
+                  if (!event.isInterestedForInteractions || response == null) {
+                    setState(() => touchedIndex = null);
+                    return;
+                  }
+                  setState(() {
+                    touchedIndex = response.touchedSection?.touchedSectionIndex;
+                  });
+                },
+              ),
               sections: [
                 PieChartSectionData(
                   color: Colors.pinkAccent,
                   value: women,
                   title: '${women.toStringAsFixed(1)}%',
-                  radius: 60,
+                  radius: touchedIndex == 0 ? 72 : 60,
                 ),
                 PieChartSectionData(
                   color: Colors.blueAccent,
                   value: men,
                   title: '${men.toStringAsFixed(1)}%',
-                  radius: 60,
+                  radius: touchedIndex == 1 ? 72 : 60,
                 ),
               ],
             ),
           ),
         ),
+        const SizedBox(height: 12),
         Row(
-          spacing: 16,
           children: const [
             _LegendItem(color: Colors.pinkAccent, label: 'Donne'),
+            SizedBox(width: 16),
             _LegendItem(color: Colors.blueAccent, label: 'Uomini'),
           ],
         ),

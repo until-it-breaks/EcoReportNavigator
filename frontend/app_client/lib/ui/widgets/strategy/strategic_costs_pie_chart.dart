@@ -32,6 +32,7 @@ class _StrategicCostPieChartState extends State<StrategicCostsPieChart> {
             Text(
               "Distribuzione dei Costi Strategici",
               style: theme.textTheme.titleLarge,
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 200,

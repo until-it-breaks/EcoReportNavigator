@@ -16,21 +16,19 @@ class MainApp extends StatelessWidget {
       valueListenable: themeNotifier,
       builder: (context, currentTheme, _) {
         return MaterialApp(
-          title: "Flutter JSON Demo",
+          title: "Data Navigator",
           theme: ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: Colors.white,
-            textTheme: const TextTheme(
-              bodyMedium: TextStyle(color: Colors.black),
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.purple,
+              brightness: Brightness.light,
             ),
           ),
           darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: Colors.black,
-            textTheme: const TextTheme(
-              bodyMedium: TextStyle(color: Colors.white),
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.purple,
+              brightness: Brightness.dark,
             ),
           ),
           themeMode: currentTheme,

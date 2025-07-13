@@ -1,8 +1,6 @@
 services:
   node:
-    build: ./backend/server
-    env_file:
-      - ./backend/server/.env
+    build: ./data_api
     networks:
       - mynetwork
   

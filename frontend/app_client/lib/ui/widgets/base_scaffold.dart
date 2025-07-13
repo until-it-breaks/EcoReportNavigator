@@ -1,5 +1,6 @@
 import 'package:app_client/core/data_categories.dart';
 import 'package:app_client/main.dart';
+import 'package:app_client/ui/widgets/chat_bottom_sheet.dart';
 import 'package:app_client/ui/widgets/theme_toggle_button.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,15 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
         child: body,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed:
+            () => {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => ChatBottomSheet(),
+              ),
+            },
         child: const Icon(Icons.chat),
       ),
     );

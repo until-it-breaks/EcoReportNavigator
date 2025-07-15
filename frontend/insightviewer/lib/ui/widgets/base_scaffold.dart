@@ -3,6 +3,7 @@ import 'package:insightviewer/main.dart';
 import 'package:insightviewer/ui/widgets/chat_bottom_sheet.dart';
 import 'package:insightviewer/ui/widgets/theme_toggle_button.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class BaseDataCategoryPageScaffold extends StatelessWidget {
   final DataCategory category;
@@ -53,7 +54,7 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
-                builder: (_) => ChatBottomSheet(),
+                builder: (_) => ChatBottomSheet(sessionId: Uuid().v4()),
               ),
             },
         child: const Icon(Icons.chat),

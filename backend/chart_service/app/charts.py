@@ -1,6 +1,6 @@
 import pandas as pd
 import altair as alt
-from app.models import ChartRequest, ChartType
+from models import ChartRequest, ChartType
 
 CHART_SIZE = 400
 

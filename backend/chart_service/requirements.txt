@@ -2,5 +2,4 @@ fastapi
 uvicorn
 altair
 pandas
-python-multipart
 vl-convert-python

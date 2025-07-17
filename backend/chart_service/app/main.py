@@ -3,8 +3,8 @@ from fastapi.responses import StreamingResponse
 from io import BytesIO
 import vl_convert as vlc
 
-from app.models import ChartRequest
-from app.charts import generate_chart
+from models import ChartRequest
+from charts import generate_chart
 
 app = FastAPI()
 

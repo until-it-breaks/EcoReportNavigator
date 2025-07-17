@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment variable files
+.env
+
+# Output files
+*.png
+
+# MacOS / Linux
+.DS_Store
+.idea/
+.vscode/
+
+# pyright/mypy cache
+.pyright/
+.mypy_cache/
+
+# pytest cache
+.pytest_cache/
+
+# VS Code settings (optional)
+.vscode/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# Logs
+*.log

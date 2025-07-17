@@ -11,9 +11,6 @@ venv/
 # Environment variable files
 .env
 
-# Output files
-*.png
-
 # MacOS / Linux
 .DS_Store
 .idea/

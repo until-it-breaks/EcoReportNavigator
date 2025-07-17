@@ -1,4 +1,4 @@
-# curl Examples for Chart API
+# 📊 curl Examples for Chart API
 
 This file contains example `curl` commands to test the `/chart` endpoint of the API.  
 Each example sends a JSON payload describing a chart request and saves the resulting PNG image.

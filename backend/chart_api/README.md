@@ -123,7 +123,3 @@ Refer to the included [`curl-examples.md`](curl-examples.md) for detailed exampl
 - Docker container runs the app with Uvicorn server, listening on port 8000.
 
 ---
-
-## 📜 License
-
-MIT License

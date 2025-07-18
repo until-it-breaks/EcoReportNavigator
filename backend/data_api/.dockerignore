@@ -4,3 +4,4 @@ Dockerfile
 eslint.config.js
 .dockerignore
 .gitignore
+README.md

@@ -3,6 +3,8 @@ import fs from "fs";
 
 import logger from "../utils/logger.js";
 import type { Chapter } from "../models/chapter.ts";
+import type { TopicMetadata } from "../models/topic-metadata.ts";
+import type { Topic } from "../models/topic.ts";
 
 const TAG = "[ChapterDataService]";
 
@@ -80,20 +82,23 @@ export class ChapterDataService {
         return chapter;
     }
 
-    async getChapterDataKeys(chapterId: number): Promise<string[]> {
+    async getChapterTopicsMetadata(chapterId: number): Promise<TopicMetadata[]> {
         const chapter = await this.getChapter(chapterId);
-        if (!chapter.data || typeof chapter.data !== "object") {
-            throw new NotFoundError(`No data in chapter ${chapterId}`);
-        }
-        return Object.keys(chapter.data);
+        const topics = chapter.topics;
+
+        return Object.entries(topics).map(([key, topic]) => ({
+            key: key,
+            label: topic.label,
+            description: topic.description,
+        }))
     }
 
-    async getChapterDataChunk(chapterId: number, key: string): Promise<unknown> {
+    async getChapterTopic(chapterId: number, key: string): Promise<Topic> {
         const chapter = await this.getChapter(chapterId);
-        const chunk = chapter.data[key];
-        if (chunk === undefined) {
-            throw new NotFoundError(`Key '${key}' not found in chapter ${chapterId}`);
+        const topic = chapter.topics[key];
+        if (topic === undefined) {
+            throw new NotFoundError(`Topic '${key}' not found in chapter ${chapterId}`);
         }
-        return chunk;
+        return topic;
     }
 }

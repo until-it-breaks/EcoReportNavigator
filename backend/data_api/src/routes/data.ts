@@ -30,30 +30,30 @@ export default function createChapterDataRoute(chapterDataService: ChapterDataSe
 
     // GET / - all chapters
     router.get("/", handleRequest(TAG, async (_req, res) => {
-        const data = await chapterDataService.getAllChapters();
-        res.json(data);
+        const chapters = await chapterDataService.getAllChapters();
+        res.json(chapters);
     }));
 
     // GET /:chapterId - specific chapter
     router.get("/:chapterId", handleRequest(TAG, async (req, res) => {
         const chapterId = Number(req.params.chapterId);
-        const data = await chapterDataService.getChapter(chapterId);
-        res.json(data);
+        const chapter = await chapterDataService.getChapter(chapterId);
+        res.json(chapter);
     }));
 
-    // GET /:chapterId/keys - chapter data keys
-    router.get("/:chapterId/keys", handleRequest(TAG, async (req, res) => {
+    // GET /:chapterId/topics - chapter topics metadata
+    router.get("/:chapterId/topics", handleRequest(TAG, async (req, res) => {
         const chapterId = Number(req.params.chapterId);
-        const keys = await chapterDataService.getChapterDataKeys(chapterId);
-        res.json(keys);
+        const topicsMetadata = await chapterDataService.getChapterTopicsMetadata(chapterId);
+        res.json(topicsMetadata);
     }));
 
-    // GET /:chapterId/keys/:key - specific chapter data chunk
-    router.get("/:chapterId/keys/:key", handleRequest(TAG, async (req, res) => {
+    // GET /:chapterId/topics/:key - specific chapter topic
+    router.get("/:chapterId/topics/:key", handleRequest(TAG, async (req, res) => {
         const chapterId = Number(req.params.chapterId);
         const key = req.params.key;
-        const chunk = await chapterDataService.getChapterDataChunk(chapterId, key);
-        res.json({ key, data: chunk });
+        const topic = await chapterDataService.getChapterTopic(chapterId, key);
+        res.json({ key, data: topic });
     }));
 
     return router;

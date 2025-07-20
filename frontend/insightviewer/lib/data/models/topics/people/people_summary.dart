@@ -1,21 +1,5 @@
 import 'package:insightviewer/data/models/value_with_unit.dart';
 
-class PeopleData {
-  final PeopleSummary summary;
-  final RemoteWorkData remoteWorkStats;
-
-  PeopleData({required this.summary, required this.remoteWorkStats});
-
-  factory PeopleData.fromJson(Map<String, dynamic> json) {
-    return PeopleData(
-      summary: PeopleSummary.fromJson(json["persone"]),
-      remoteWorkStats: RemoteWorkData.fromJson(
-        json["i_numeri_del_lavoro_a_distanza"],
-      ),
-    );
-  }
-}
-
 class PeopleSummary {
   final Personnel docenteRicercatore;
   final Personnel tecnicoAmministrativo;
@@ -88,42 +72,6 @@ class Welfare extends ValueWithUnit {
     return Welfare(
       value: json["valore"],
       unitOfMeasure: json["unita_di_misura"],
-    );
-  }
-}
-
-class RemoteWorkStats {
-  final String type;
-  final int? year2021;
-  final int? year2022;
-  final int? year2023;
-
-  RemoteWorkStats({
-    required this.type,
-    this.year2021,
-    this.year2022,
-    this.year2023,
-  });
-
-  factory RemoteWorkStats.fromJson(Map<String, dynamic> json) {
-    return RemoteWorkStats(
-      type: json["tipologia"],
-      year2021: json["2021"],
-      year2022: json["2022"],
-      year2023: json["2023"],
-    );
-  }
-}
-
-class RemoteWorkData {
-  final List<RemoteWorkStats> entries;
-
-  RemoteWorkData({required this.entries});
-
-  factory RemoteWorkData.fromJson(List<dynamic> jsonList) {
-    return RemoteWorkData(
-      entries:
-          jsonList.map((entry) => RemoteWorkStats.fromJson(entry)).toList(),
     );
   }
 }

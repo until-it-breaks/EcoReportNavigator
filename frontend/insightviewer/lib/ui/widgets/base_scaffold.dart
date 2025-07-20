@@ -1,4 +1,4 @@
-import 'package:insightviewer/core/data_categories.dart';
+import 'package:insightviewer/core/app_chapter.dart';
 import 'package:insightviewer/main.dart';
 import 'package:insightviewer/ui/widgets/chat_bottom_sheet.dart';
 import 'package:insightviewer/ui/widgets/theme_toggle_button.dart';
@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class BaseDataCategoryPageScaffold extends StatelessWidget {
-  final DataCategory category;
+  final AppChapter chapter;
   final Widget body;
 
   const BaseDataCategoryPageScaffold({
     super.key,
-    required this.category,
+    required this.chapter,
     required this.body,
   });
 
@@ -26,13 +26,13 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
           spacing: 8,
           children: [
             Icon(
-              category.icon,
+              chapter.icon,
               size: 36,
               color: Theme.of(context).colorScheme.primary,
             ),
             Flexible(
               child: Text(
-                category.name,
+                chapter.name,
                 style: Theme.of(context).textTheme.headlineSmall,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

@@ -1,4 +1,4 @@
-import 'package:insightviewer/data/models/sections/research.dart';
+import 'package:insightviewer/data/models/topics/reseach/research_summary.dart';
 import 'package:insightviewer/ui/widgets/summary_grid.dart';
 import 'package:insightviewer/utility/utility.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:insightviewer/data/models/sections/environment.dart';
+import 'package:insightviewer/data/models/topics/environment/carbon_footprint.dart';
 import 'package:insightviewer/utility/utility.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:insightviewer/data/models/sections/society.dart';
+import 'package:insightviewer/data/models/topics/society/society_summary.dart';
 import 'package:insightviewer/ui/widgets/summary_grid.dart';
 import 'package:insightviewer/utility/utility.dart';
 import 'package:flutter/material.dart';

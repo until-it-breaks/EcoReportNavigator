@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:insightviewer/data/models/sections/environment.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/environment/energy_plan_milestone.dart';
 
 class MilestoneTable extends StatefulWidget {
   final List<EnergyPlanMilestone> milestones;

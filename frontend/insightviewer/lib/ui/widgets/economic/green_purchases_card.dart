@@ -1,5 +1,5 @@
-import 'package:insightviewer/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/economic/green_purchases.dart';
 
 class GreenPurchasesCard extends StatelessWidget {
   final GreenPurchases greenPurchases;

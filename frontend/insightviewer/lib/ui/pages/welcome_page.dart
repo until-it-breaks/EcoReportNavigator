@@ -1,4 +1,4 @@
-import "package:insightviewer/core/data_categories.dart";
+import "package:insightviewer/core/app_chapter.dart";
 import "package:insightviewer/main.dart";
 import "package:insightviewer/ui/widgets/theme_toggle_button.dart";
 import "package:flutter/material.dart";
@@ -11,13 +11,13 @@ class WelcomePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     final buttons = [
-      _buildNavButton(context, DataCategory.strategy),
-      _buildNavButton(context, DataCategory.economic),
-      _buildNavButton(context, DataCategory.teaching),
-      _buildNavButton(context, DataCategory.research),
-      _buildNavButton(context, DataCategory.people),
-      _buildNavButton(context, DataCategory.society),
-      _buildNavButton(context, DataCategory.environment),
+      _buildNavButton(context, AppChapter.strategy),
+      _buildNavButton(context, AppChapter.economic),
+      _buildNavButton(context, AppChapter.teaching),
+      _buildNavButton(context, AppChapter.research),
+      _buildNavButton(context, AppChapter.people),
+      _buildNavButton(context, AppChapter.society),
+      _buildNavButton(context, AppChapter.environment),
     ];
 
     return Scaffold(
@@ -81,7 +81,7 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildNavButton(BuildContext context, DataCategory category) {
+  Widget _buildNavButton(BuildContext context, AppChapter category) {
     return SizedBox(
       width: 200,
       child: ElevatedButton.icon(

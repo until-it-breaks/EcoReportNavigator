@@ -1,4 +1,4 @@
-import 'package:insightviewer/data/models/sections/economic.dart';
+import 'package:insightviewer/data/models/topics/economic/economic_value_summary.dart';
 import 'package:insightviewer/ui/widgets/summary_grid.dart';
 import 'package:insightviewer/utility/utility.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:insightviewer/data/models/value_with_unit.dart';
 import 'package:intl/intl.dart';
 
@@ -14,4 +15,18 @@ String formatIntWithThousandsSeparator(int value) {
 String formatValueWithUnitWithThousandsSeparator(ValueWithUnit valueWithUnit) {
   final formatter = NumberFormat.decimalPattern("it_IT");
   return "${formatter.format(valueWithUnit.value)} ${valueWithUnit.unitOfMeasure}";
+}
+
+Future<T?> safeFetch<T, R>(
+  Future<dynamic> Function() fetcher,
+  T Function(R) fromJson,
+  String logLabel,
+) async {
+  try {
+    final json = await fetcher();
+    return fromJson(json.data as R);
+  } catch (e, st) {
+    debugPrint('Error loading $logLabel: $e\n$st');
+    return null;
+  }
 }

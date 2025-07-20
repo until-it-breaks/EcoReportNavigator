@@ -1,4 +1,4 @@
-import 'package:insightviewer/data/models/sections/society.dart';
+import 'package:insightviewer/data/models/topics/society/internship_agreements_data.dart';
 import 'package:insightviewer/utility/utility.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';

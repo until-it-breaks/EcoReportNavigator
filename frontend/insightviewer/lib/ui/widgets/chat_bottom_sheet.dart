@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insightviewer/core/config.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatBottomSheet extends StatefulWidget {
@@ -19,7 +20,7 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
   void initState() {
     super.initState();
     _channel = WebSocketChannel.connect(
-      Uri.parse("ws://localhost/ws/chat/${widget.sessionId}"),
+      Uri.parse("${AppConfig.chatAPI}/${widget.sessionId}"),
     );
 
     _channel.stream.listen((data) {
@@ -71,10 +72,9 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
                               isUser
                                   ? Theme.of(
                                     context,
-                                  ).colorScheme.primary.withOpacity(0.1)
-                                  : Theme.of(
-                                    context,
-                                  ).colorScheme.secondary.withOpacity(0.1),
+                                  ).colorScheme.primary.withValues(alpha: 0.1)
+                                  : Theme.of(context).colorScheme.secondary
+                                      .withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(message["msg"] ?? ""),

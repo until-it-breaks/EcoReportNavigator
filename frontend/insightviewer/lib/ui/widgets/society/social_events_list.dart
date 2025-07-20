@@ -1,5 +1,5 @@
-import 'package:insightviewer/data/models/sections/society.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/society/social_event.dart';
 
 class SocialEventList extends StatelessWidget {
   final List<SocialEvent> events;

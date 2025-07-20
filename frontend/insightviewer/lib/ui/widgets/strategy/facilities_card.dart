@@ -1,5 +1,5 @@
-import 'package:insightviewer/data/models/sections/strategy.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/strategy.dart/facilities.dart';
 
 class FacilitiesCard extends StatelessWidget {
   final Facilities facilities;

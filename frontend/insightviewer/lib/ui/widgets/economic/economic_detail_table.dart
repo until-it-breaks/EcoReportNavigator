@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:insightviewer/data/models/sections/economic.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/economic/economic_value_detailed.dart';
 
 class EconomicDetailTable extends StatefulWidget {
   final String title;

@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:insightviewer/data/models/sections/teaching.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:insightviewer/data/models/topics/teaching/active_course.dart';
 
 class ActiveCoursesBarChart extends StatefulWidget {
   final List<ActiveCourse> activeCourses;

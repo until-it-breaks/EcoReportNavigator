@@ -9,4 +9,4 @@ class IncomingMessage(BaseModel):
     
 class OutgoingMessage(BaseModel):
     reply: str                          # Outgoing reply
-    image_base64: Optional[str] = None  # Optional image attachment
+    chart_url: Optional[str] = None     # Optional URL to chart image

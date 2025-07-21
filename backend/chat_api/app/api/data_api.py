@@ -1,6 +1,7 @@
+import os
 import requests
 
-BASE_URL = "http://data_api:8080/data"
+BASE_URL = os.getenv("DATA_API_URL")
 
 # Returns the all the details of a given topic belonging to a given chapter.
 def get_topic_data(chapterId: int, topicKey: str):

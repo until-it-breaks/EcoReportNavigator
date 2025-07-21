@@ -4,8 +4,8 @@ import json
 from google import genai
 from google.genai.types import GenerateContentConfig
 
-from .chart_api import generate_chart, get_chart_schema, save_chart_image
-from .data_api import get_topic_data, get_topics
+from .api.chart_api import generate_chart, get_chart_schema, save_chart_image
+from .api.data_api import get_topic_data, get_topics
 from .messages import IncomingMessage, OutgoingMessage
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -15,6 +15,7 @@ genai_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 FAILURE_ANSWER = "Non sono in grado di rispondere."
 
+# Performs the LLM call with Gemini 2.
 def call_genai_with_prompt(prompt: str) -> dict:
     try:
         response = genai_client.models.generate_content(
@@ -44,7 +45,7 @@ def _generate_topic_reply(user_text: str, chapter_id: str, topic_key: str) -> Ou
     chart_schema = get_chart_schema()
 
     prompt = f"""
-        You are a chat assistant. You received this message from the user:
+        You are a chat assistant that knows about the University of Bologna "Bilancio di Sostenibilità". You received this message from the user:
         "{user_text}"
 
         The following topic was found as most relevant:

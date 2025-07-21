@@ -1,6 +1,8 @@
 services:
   data_api:
     build: ./data_api
+    expose:
+      - "8080"
     networks:
       - external
 

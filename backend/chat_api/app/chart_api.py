@@ -1,0 +1,1 @@
+BASE_URL = "http://chart_api:8080/data"

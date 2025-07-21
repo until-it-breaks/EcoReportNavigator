@@ -54,7 +54,11 @@ class BaseDataCategoryPageScaffold extends StatelessWidget {
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
-                builder: (_) => ChatBottomSheet(sessionId: Uuid().v4()),
+                builder:
+                    (_) => ChatBottomSheet(
+                      sessionId: Uuid().v4(),
+                      chapter: chapter,
+                    ),
               ),
             },
         child: const Icon(Icons.chat),

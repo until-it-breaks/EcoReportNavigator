@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:insightviewer/core/app_chapter.dart';
 import 'package:insightviewer/core/config.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatBottomSheet extends StatefulWidget {
+  final AppChapter chapter;
   final String sessionId;
 
-  const ChatBottomSheet({super.key, required this.sessionId});
+  const ChatBottomSheet({
+    super.key,
+    required this.sessionId,
+    required this.chapter,
+  });
 
   @override
   State<ChatBottomSheet> createState() => _ChatBottomSheetState();

@@ -7,22 +7,20 @@ services:
   chat_api:
     build: ./chat_api
     depends_on:
-      - redis
+      - data_api
+      - chart_api
     expose:
       - "8000"
     environment:
       - GEMINI_API_KEY
     networks:
       - external
-      - internal
-    
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    networks:
-      - internal
   
+  chart_api:
+    build: ./chart_api
+    networks:
+      - external
+    
   nginx:
     image: nginx:latest
     ports:
@@ -37,7 +35,4 @@ services:
 
 networks:
   external:
-    driver: bridge
-  
-  internal:
     driver: bridge

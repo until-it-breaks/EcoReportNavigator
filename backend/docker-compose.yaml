@@ -13,13 +13,20 @@ services:
       - "8000"
     environment:
       - GEMINI_API_KEY
+      - CHART_API_URL=http://chart_api:8000
+      - DATA_API_URL=http://data_api:8080/data
+    volumes:
+      - charts_data:/app/charts
     networks:
       - external
+      - internal
   
   chart_api:
     build: ./chart_api
+    expose:
+      - "8000"
     networks:
-      - external
+      - internal
     
   nginx:
     image: nginx:latest
@@ -27,12 +34,18 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - charts_data:/usr/share/nginx/html/charts
     depends_on:
       - data_api
       - chat_api
     networks:
       - external
 
+volumes:
+  charts_data: {}
+
 networks:
   external:
+    driver: bridge
+  internal:
     driver: bridge

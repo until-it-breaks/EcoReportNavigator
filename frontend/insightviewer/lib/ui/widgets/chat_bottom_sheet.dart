@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:insightviewer/core/app_chapter.dart';
 import 'package:insightviewer/core/config.dart';
+import 'package:insightviewer/data/data_repository.dart';
 import 'package:insightviewer/data/models/messages/chat_message.dart';
 import 'package:insightviewer/data/models/messages/client_message.dart';
 import 'package:insightviewer/data/models/messages/server_message.dart';
+import 'package:insightviewer/data/models/topic_metadata.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatBottomSheet extends StatefulWidget {
@@ -29,9 +31,14 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
   final List<ChatMessage> _messages = [];
   bool _isLoading = false;
 
+  List<TopicMetadata> _topics = [];
+
   @override
   void initState() {
     super.initState();
+
+    _loadTopics();
+
     _channel = WebSocketChannel.connect(
       Uri.parse("${AppConfig.chatAPI}/${widget.sessionId}"),
     );
@@ -63,6 +70,23 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
     });
   }
 
+  // Loads 5 random topics
+  Future<void> _loadTopics() async {
+    try {
+      final topics = await DataRepository().fetchTopicMetadataList(
+        widget.chapter,
+      );
+      setState(() {
+        topics.shuffle();
+        _topics = topics.take(5).toList();
+      });
+    } catch (e) {
+      setState(() {
+        _topics = [];
+      });
+    }
+  }
+
   void _sendMessage() {
     final text = _controller.text.trim();
     if (text.isNotEmpty) {
@@ -70,7 +94,6 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
         chapterId: widget.chapter.id,
         text: text,
         freechat: true,
-        topicKey: null,
       );
 
       final jsonMsg = jsonEncode(msg);
@@ -83,6 +106,23 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
       });
       WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     }
+  }
+
+  void _sendTopicMessage(TopicMetadata topic) {
+    final msg = ClientMessage(
+      chapterId: widget.chapter.id,
+      freechat: false,
+      topicKey: topic.key,
+    );
+
+    final jsonMsg = jsonEncode(msg);
+    _channel.sink.add(jsonMsg);
+
+    setState(() {
+      _isLoading = true;
+      _messages.add(ChatMessage(role: ChatRole.user, text: topic.label));
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
   }
 
   void _scrollToBottom() {
@@ -98,7 +138,11 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+
     return DraggableScrollableSheet(
+      initialChildSize: 0.9,
+      minChildSize: 0.3,
+      maxChildSize: 1.00,
       builder: (context, scrollController) {
         return Container(
           padding: const EdgeInsets.all(16),
@@ -117,14 +161,34 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
                   const Text("AI Chatbot"),
                 ],
               ),
+              if (_topics.isNotEmpty) ...[
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    alignment: WrapAlignment.start,
+                    children:
+                        _topics.map((topic) {
+                          return ElevatedButton(
+                            onPressed: () => _sendTopicMessage(topic),
+                            child: Text(
+                              topic.label,
+                              style: theme.textTheme.bodySmall,
+                            ),
+                          );
+                        }).toList(),
+                  ),
+                ),
+              ],
               Expanded(
                 child: ListView.builder(
-                  controller: _scrollController,
+                  controller: scrollController,
                   itemCount: _messages.length + (_isLoading ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (_isLoading && index == _messages.length) {
                       return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 6),
+                        padding: const EdgeInsets.symmetric(vertical: 6),
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Row(
@@ -135,7 +199,7 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
                                 Icons.smart_toy,
                                 color: theme.colorScheme.primary,
                               ),
-                              CircularProgressIndicator(strokeWidth: 3),
+                              const CircularProgressIndicator(strokeWidth: 3),
                             ],
                           ),
                         ),
@@ -157,20 +221,15 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
                           decoration: BoxDecoration(
                             color:
                                 isUser
-                                    ? theme.colorScheme.primary.withValues(
-                                      alpha: 0.5,
-                                    )
-                                    : theme.colorScheme.secondary.withValues(
-                                      alpha: 0.25,
-                                    ),
+                                    ? theme.colorScheme.primary.withAlpha(128)
+                                    : theme.colorScheme.secondary.withAlpha(64),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Column(
-                            spacing: 8,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(message.text),
-                              if (message.chartUrl != null) ...[
+                              if (message.chartUrl != null)
                                 GestureDetector(
                                   onTap: () {
                                     showDialog(
@@ -188,10 +247,10 @@ class _ChatBottomSheetState extends State<ChatBottomSheet> {
                                   child: Center(
                                     child: Image.network(
                                       "${AppConfig.chartBaseUrl}${message.chartUrl}",
+                                      height: 200,
                                     ),
                                   ),
                                 ),
-                              ],
                             ],
                           ),
                         ),

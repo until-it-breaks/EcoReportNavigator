@@ -8,6 +8,12 @@ import 'package:insightviewer/data/models/topic.dart';
 import 'package:insightviewer/data/models/topic_metadata.dart';
 
 class DataRepository {
+  static final DataRepository _instance = DataRepository._internal();
+
+  factory DataRepository() => _instance;
+
+  DataRepository._internal();
+
   static final String baseUrl = AppConfig.dataAPI;
 
   Future<Chapter> fetchChapter(AppChapter chapter) async {

@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
       valueListenable: themeNotifier,
       builder: (context, currentTheme, _) {
         return MaterialApp(
-          title: "Data Navigator",
+          title: "Insight Viewer",
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
